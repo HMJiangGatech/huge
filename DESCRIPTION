@@ -6,8 +6,14 @@ Author: Tuo Zhao, Xingguo Li, Haoming Jiang, Han Liu, Kathryn Roeder, John Laffe
         Wasserman
 Maintainer: Haoming Jiang <hjiang98@gatech.edu>
 Depends: R (>= 3.0.0), Matrix, lattice, igraph, MASS
-Imports: grDevices, graphics, methods, stats, utils, Rcpp (>= 0.12.15),
-        RcppEigen (>= 0.3.3.4.0)
+Imports: 
+    grDevices,
+    graphics,
+    methods,
+    stats,
+    utils,
+    Rcpp,
+    RcppEigen (>= 0.3.3.4.0)
 LinkingTo: Rcpp, RcppEigen
 Description: Provides a general framework for
         high-dimensional undirected graph estimation. It integrates

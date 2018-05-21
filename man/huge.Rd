@@ -29,11 +29,8 @@ huge(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL,
 
 \item{verbose}{If \code{verbose = FALSE}, tracing information printing is disabled. The default value is \code{TRUE}.}
 }
-\value{
-The sum of \code{x} and \code{y}.
-}
 \description{
-High-dimensional undirected graph estimation.
+The main function for high-dimensional undirected graph estimation. Three graph estimation methods, including (1) Meinshausen-Buhlmann graph estimation (\code{mb}) (2) graphical lasso (\code{glasso}) and (3) correlation thresholding graph estimation (\code{ct}), are available for data analysis.
 }
 \examples{
 #generate data

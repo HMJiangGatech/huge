@@ -10,6 +10,8 @@
 ## Main function
 #' High-dimensional undirected graph estimation.
 #' 
+#' The main function for high-dimensional undirected graph estimation. Three graph estimation methods, including (1) Meinshausen-Buhlmann graph estimation (\code{mb}) (2) graphical lasso (\code{glasso}) and (3) correlation thresholding graph estimation (\code{ct}), are available for data analysis.
+#' 
 #' @param x There are 2 options: (1) \code{x} is an \code{n} by \code{d} data matrix (2) a \code{d} by \code{d} sample covariance matrix. The program automatically identifies the input matrix by checking the symmetry. (\code{n} is the sample size and \code{d} is the dimension).
 #' @param lambda A sequence of decresing positive numbers to control the regularization when \code{method = "mb"} or \code{"glasso"}, or the thresholding in \code{method = "ct"}. Typical usage is to leave the input \code{lambda = NULL} and have the program compute its own \code{lambda} sequence based on \code{nlambda} and \code{lambda.min.ratio}. Users can also specify a sequence to override this. When \code{method = "mb"} or \code{"glasso"}, use with care - it is better to supply a decreasing sequence values than a single (small) value.
 #' @param nlambda The number of regularization/thresholding paramters. The default value is \code{30} for \code{method = "ct"} and \code{10} for \code{method = "mb"} or \code{"glasso"}.
@@ -20,7 +22,6 @@
 #' @param cov.output If \code{cov.output = TRUE}, the output will inlcude a path of estimated covariance matrices. ONLY applicable when \code{method = "glasso"}. Since the estimated covariance matrices are generally not sparse, please use it with care, or it may take much memory under high-dimensional setting. The default value is \code{FALSE}.
 #' @param sym Symmetrize the output graphs. If \code{sym = "and"}, the edge between node \code{i} and node \code{j} is selected ONLY when both node \code{i} and node \code{j} are selected as neighbors for each other. If \code{sym = "or"}, the edge is selected when either node \code{i} or node \code{j} is selected as the neighbor for each other. The default value is \code{"or"}. ONLY applicable when \code{method = "mb"}.
 #' @param verbose If \code{verbose = FALSE}, tracing information printing is disabled. The default value is \code{TRUE}.
-#' @return 
 #' @examples
 #' #generate data
 #' L = huge.generator(n = 50, d = 12, graph = "hub", g = 4)
@@ -48,6 +49,7 @@
 #' #out3 = huge(L$data, method = "glasso")
 #' #out3
 #' #plot(out3)
+#' @export
 huge = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, method = "mb", scr = NULL, scr.num = NULL, cov.output = FALSE, sym = "or", verbose = TRUE)
 {	
 	gcinfo(FALSE)
