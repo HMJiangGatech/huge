@@ -7,6 +7,36 @@
 # Version: 1.1.0                                                        #
 #-----------------------------------------------------------------------#
 
+#' Graph visualization
+#' 
+#' Implements the graph visualization using adjacency matrix. It can automatic organize 2D embedding layout.
+#' 
+#' The user can change \code{cur.num} to plot several figures and select the best one. The implementation is based on the popular package "igraph".
+#'   
+#' @param G The adjaceny matrix corresponding to the graph.
+#' @param epsflag If \code{epsflag = TRUE}, save the plot as an eps file in the target directory. The default value is \code{FALSE}.
+#' @param graph.name The name of the output eps files. The default value is "default".
+#' @param cur.name The number of plots saved as eps files. Only applicale when \code{epsflag = TRUE}. The default value is 1.
+#' @param location Target directory. The default value is the current working directory.
+#' @seealso \code{\link{huge}} and \code{\link{huge-package}}.
+#' @examples
+#' ## visualize the hub graph
+#' L = huge.generator(graph = "hub")
+#' huge.plot(L$theta)
+#' 
+#' ## visualize the band graph
+#' L = huge.generator(graph = "band",g=5)
+#' huge.plot(L$theta)
+#' 
+#' ## visualize the cluster graph
+#' L = huge.generator(graph = "cluster")
+#' huge.plot(L$theta)
+#' 
+#' #show working directory
+#' getwd()
+#' #plot 5 graphs and save the plots as eps files in the working directory  
+#' huge.plot(L$theta, epsflag = TRUE, cur.num = 5)
+#' @export
 huge.plot = function(G, epsflag = FALSE, graph.name = "default", cur.num = 1, location=NULL){
 	gcinfo(FALSE)
 	if(missing(location))	location = getwd()

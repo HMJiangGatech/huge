@@ -8,8 +8,8 @@ High-Dimensional Undirected Graph Estimation
 ## GSOC TODO List
 
 ### Code Refactoring and Benchmarking
-- [ ] Use `roxygen2` to manage Documents.
-- [ ] Benchmark the code (I).
+- [x] Use `roxygen2` to manage Documents.
+- [ ] Benchmark the code.
 - [ ] Use `RcppEigen` to accelerate the code.
 - [ ] Use `OpenMP` to enable multi-processing.
 

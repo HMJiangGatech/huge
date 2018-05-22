@@ -28,8 +28,6 @@ huge(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL,
 \item{sym}{Symmetrize the output graphs. If \code{sym = "and"}, the edge between node \code{i} and node \code{j} is selected ONLY when both node \code{i} and node \code{j} are selected as neighbors for each other. If \code{sym = "or"}, the edge is selected when either node \code{i} or node \code{j} is selected as the neighbor for each other. The default value is \code{"or"}. ONLY applicable when \code{method = "mb"}.}
 
 \item{verbose}{If \code{verbose = FALSE}, tracing information printing is disabled. The default value is \code{TRUE}.}
-
-\item{data}{The \code{n} by \code{d} data matrix or \code{d} by \code{d} sample covariance matrix from the input}
 }
 \value{
 An object with S3 class \code{"huge"} is returned:  
@@ -79,6 +77,9 @@ The main function for high-dimensional undirected graph estimation. Three graph 
 \details{
 The graph structure is estimated by Meinshausen-Buhlmann graph estimation or the graphical lasso, and both methods can be further accelerated via the lossy screening rule by preselecting the neighborhood of each variable by correlation thresholding. We target on high-dimensional data analysis usually d >> n, and the computation is memory-optimized using the sparse matrix output. We also provide a highly computationally efficient approaches correlation thresholding graph estimation.
 }
+\note{
+This function ONLY estimates the graph path. For more information about the optimal graph selection, please refer to \code{\link{huge.select}}.\cr
+}
 \examples{
 #generate data
 L = huge.generator(n = 50, d = 12, graph = "hub", g = 4)
@@ -106,4 +107,7 @@ huge.plot(out1$path[[3]])
 #out3 = huge(L$data, method = "glasso")
 #out3
 #plot(out3)
+}
+\seealso{
+\code{\link{huge.generator}}, \code{\link{huge.select}}, \code{\link{huge.plot}}, \code{\link{huge.roc}}, and \code{\link{huge-package}}.
 }

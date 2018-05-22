@@ -7,7 +7,6 @@
 # Version: 1.1.0                                                        #
 #-----------------------------------------------------------------------#
 
-## Main function
 #' High-dimensional undirected graph estimation
 #' 
 #' The main function for high-dimensional undirected graph estimation. Three graph estimation methods, including (1) Meinshausen-Buhlmann graph estimation (\code{mb}) (2) graphical lasso (\code{glasso}) and (3) correlation thresholding graph estimation (\code{ct}), are available for data analysis.
@@ -65,7 +64,8 @@
 #' \item{loglik}{
 #'   A \code{nlambda} dimensional vector containing the likelihood scores along the graph path (\code{icov}). ONLY applicable when \code{method = "glasso"}. For an estimated inverse convariance Z, the program only calculates log(det(Z)) - trace(SZ) where S is the empirical covariance matrix. For the likelihood for n observations, please multiply by n/2.
 #' }
-#' @param data The \code{n} by \code{d} data matrix or \code{d} by \code{d} sample covariance matrix from the input
+#' @note This function ONLY estimates the graph path. For more information about the optimal graph selection, please refer to \code{\link{huge.select}}.\cr
+#' @seealso \code{\link{huge.generator}}, \code{\link{huge.select}}, \code{\link{huge.plot}}, \code{\link{huge.roc}}, and \code{\link{huge-package}}.
 #' @examples
 #' #generate data
 #' L = huge.generator(n = 50, d = 12, graph = "hub", g = 4)
@@ -153,6 +153,14 @@ huge = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, metho
 	return(est)
 }
 
+#' Print function for S3 class "huge"
+#' 
+#' Print the information about the model usage, the graph path length, graph dimension, sparsity level.
+#' 
+#' @param x An object with S3 class \code{"huge"}.
+#' @param \dots System reserved (No specific usage)
+#' @seealso \code{\link{huge}}
+#' @export
 print.huge = function(x, ...)
 {	
 	if(x$method == "ct")
@@ -172,6 +180,15 @@ print.huge = function(x, ...)
 	cat("Sparsity level:",min(x$sparsity),"----->",max(x$sparsity),"\n")
 }
 
+#' Plot function for S3 class "huge"
+#' 
+#' Plot sparsity level information and 3 typical sparse graphs from the graph path. 
+#' 
+#' @param x An object with S3 class \code{"huge"} 
+#' @param align If \code{align = FALSE}, 3 plotted graphs are aligned
+#' @param \dots System reserved (No specific usage)
+#' @seealso \code{\link{huge}}
+#' @export
 plot.huge = function(x, align = FALSE, ...){
   gcinfo(FALSE)
 	

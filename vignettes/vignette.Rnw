@@ -1,0 +1,11 @@
+% \VignetteIndexEntry{vignette}
+% \VignetteKeywords{keywords here}
+% \VignettePackage{package name}
+
+\documentclass[a4paper]{article}
+\usepackage{hyperref}
+\usepackage{pdfpages}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\includepdf[fitpaper=true,pages=-]{huge.pdf}
+\end{document}
