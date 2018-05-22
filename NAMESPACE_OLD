@@ -1,4 +1,0 @@
-useDynLib(huge)
-import(RcppEigen)
-importFrom(Rcpp, evalCpp)
-exportPattern("^[[:alpha:]]+")

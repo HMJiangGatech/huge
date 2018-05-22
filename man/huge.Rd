@@ -2,7 +2,7 @@
 % Please edit documentation in R/huge.R
 \name{huge}
 \alias{huge}
-\title{High-dimensional undirected graph estimation.}
+\title{High-dimensional undirected graph estimation}
 \usage{
 huge(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL,
   method = "mb", scr = NULL, scr.num = NULL, cov.output = FALSE,
@@ -28,9 +28,56 @@ huge(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL,
 \item{sym}{Symmetrize the output graphs. If \code{sym = "and"}, the edge between node \code{i} and node \code{j} is selected ONLY when both node \code{i} and node \code{j} are selected as neighbors for each other. If \code{sym = "or"}, the edge is selected when either node \code{i} or node \code{j} is selected as the neighbor for each other. The default value is \code{"or"}. ONLY applicable when \code{method = "mb"}.}
 
 \item{verbose}{If \code{verbose = FALSE}, tracing information printing is disabled. The default value is \code{TRUE}.}
+
+\item{data}{The \code{n} by \code{d} data matrix or \code{d} by \code{d} sample covariance matrix from the input}
+}
+\value{
+An object with S3 class \code{"huge"} is returned:  
+  \item{data}{
+    The \code{n} by \code{d} data matrix or \code{d} by \code{d} sample covariance matrix from the input
+  }
+\item{cov.input}{
+  An indicator of the sample covariance. 
+}
+\item{ind.mat}{
+  The \code{scr.num} by \code{k} matrix with each column correspondsing to a variable in \code{ind.group} and contains the indices of the remaining neighbors after the GSS. ONLY applicable when \code{scr = TRUE} and \code{approx = FALSE}
+}
+\item{lambda}{
+  The sequence of regularization parameters used in mb or thresholding parameters in ct.
+}
+\item{sym}{
+  The \code{sym} from the input. ONLY applicable when \code{method = "mb"}.
+}
+\item{scr}{
+  The \code{scr} from the input. ONLY applicable when \code{method = "mb"} or {"glasso"}.
+}
+\item{path}{
+  A list of \code{k} by \code{k} adjacency matrices of estimated graphs as a graph path corresponding to \code{lambda}.
+}
+\item{sparsity}{
+  The sparsity levels of the graph path.
+}
+\item{icov}{
+  A list of \code{d} by \code{d} precision matrices as an alternative graph path (numerical path) corresponding to \code{lambda}. ONLY applicable when {method = "glasso"}
+}
+\item{cov}{
+  A list of \code{d} by \code{d} estimated covariance matrices corresponding to \code{lambda}. ONLY applicable when \code{cov.output = TRUE} and {method = "glasso"}
+}
+\item{method}{
+  The method used in the graph estimation stage.
+}
+\item{df}{
+  If \code{method = "mb"}, it is a \code{k} by \code{nlambda} matrix. Each row contains the number of nonzero coefficients along the lasso solution path. If \code{method = "glasso"}, it is a \code{nlambda} dimensional vector containing the number of nonzero coefficients along the graph path \code{icov}.
+}
+\item{loglik}{
+  A \code{nlambda} dimensional vector containing the likelihood scores along the graph path (\code{icov}). ONLY applicable when \code{method = "glasso"}. For an estimated inverse convariance Z, the program only calculates log(det(Z)) - trace(SZ) where S is the empirical covariance matrix. For the likelihood for n observations, please multiply by n/2.
+}
 }
 \description{
 The main function for high-dimensional undirected graph estimation. Three graph estimation methods, including (1) Meinshausen-Buhlmann graph estimation (\code{mb}) (2) graphical lasso (\code{glasso}) and (3) correlation thresholding graph estimation (\code{ct}), are available for data analysis.
+}
+\details{
+The graph structure is estimated by Meinshausen-Buhlmann graph estimation or the graphical lasso, and both methods can be further accelerated via the lossy screening rule by preselecting the neighborhood of each variable by correlation thresholding. We target on high-dimensional data analysis usually d >> n, and the computation is memory-optimized using the sparse matrix output. We also provide a highly computationally efficient approaches correlation thresholding graph estimation.
 }
 \examples{
 #generate data
