@@ -119,8 +119,8 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
 	}
 	
 	   	
-   	G = new("dgCMatrix", Dim = as.integer(c(d*nlambda,d)), x = as.vector(out$x[1:out$col_cnz[d+1]]),p = as.integer(out$col_cnz), i = as.integer(out$row_idx[1:out$col_cnz[d+1]]))
-
+  G = new("dgCMatrix", Dim = as.integer(c(d*nlambda,d)), x = as.vector(out$x[1:out$col_cnz[d+1]]),p = as.integer(out$col_cnz), i = as.integer(out$row_idx[1:out$col_cnz[d+1]]))
+  
 	fit$beta = list()
 	fit$path = list()
 	fit$df = matrix(0,d,nlambda)
@@ -132,8 +132,12 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
 		fit$path[[i]] = abs(fit$beta[[i]])
 		fit$df[,i] = apply(sign(fit$path[[i]]),2,sum)
 		
+		print("-------------------")
+		print(fit$beta[[i]])
+		print("-------------------")
+		
 		if(sym == "or")
-			fit$path[[i]] = sign(fit$path[[i]] + t(fit$path[[i]]))
+			fit$path[[i]] = sign(fit$path[[i]] + t(as.matrix(fit$path[[i]])))
 		if(sym == "and")
 			fit$path[[i]] = sign(fit$path[[i]] * t(fit$path[[i]]))
 		fit$sparsity[i] = sum(fit$path[[i]])/d/(d-1)

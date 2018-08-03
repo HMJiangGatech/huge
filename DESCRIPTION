@@ -13,8 +13,10 @@ Imports:
     stats,
     utils,
     Rcpp,
-    RcppEigen (>= 0.3.3.4.0)
-LinkingTo: Rcpp, RcppEigen
+    RcppEigen
+LinkingTo:
+    Rcpp,
+    RcppEigen
 Description: Provides a general framework for
         high-dimensional undirected graph estimation. It integrates
         data preprocessing, neighborhood screening, graph estimation,

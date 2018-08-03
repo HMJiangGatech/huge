@@ -73,13 +73,19 @@ huge.glasso = function(x, lambda = NULL, lambda.min.ratio = NULL, nlambda = NULL
 				if(is.null(out.glasso))
 					out.glasso = .C("hugeglassoscr", S = as.double(S[z,z]), W = as.double(S[z,z]), T = as.double(diag(q)), dd = as.integer(q),lambda = as.double(lambda[i]), df = as.integer(0), PACKAGE="huge")
 			}	
+		  else {
+		    if(!is.null(out.glasso))
+		      out.glasso = .C("hugeglasso", S = as.double(S[z,z]), W = as.double(tmp.cov[z,z]), T = as.double(tmp.icov[z,z]), dd = as.integer(q),lambda = as.double(lambda[i]), df = as.integer(0), PACKAGE="huge")
+		    if(is.null(out.glasso))
+		      out.glasso = .C("hugeglasso", S = as.double(S[z,z]), W = as.double(S[z,z]), T = as.double(diag(q)), dd = as.integer(q),lambda = as.double(lambda[i]), df = as.integer(0), PACKAGE="huge")
+		  }	
 			
-			else {
-				if(!is.null(out.glasso))
-					out.glasso = .C("hugeglasso", S = as.double(S[z,z]), W = as.double(tmp.cov[z,z]), T = as.double(tmp.icov[z,z]), dd = as.integer(q),lambda = as.double(lambda[i]), df = as.integer(0), PACKAGE="huge")
-				if(is.null(out.glasso))
-					out.glasso = .C("hugeglasso", S = as.double(S[z,z]), W = as.double(S[z,z]), T = as.double(diag(q)), dd = as.integer(q),lambda = as.double(lambda[i]), df = as.integer(0), PACKAGE="huge")
-			}
+			# else {
+			# 	if(!is.null(out.glasso))
+			# 		out.glasso = .Call("_huge_hugeglassoscrEigen", S = as.matrix(S[z,z]), W = as.matrix(tmp.cov[z,z]), T = as.matrix(tmp.icov[z,z]), dd = as.integer(q),lambda = as.double(lambda[i]), df = as.integer(0), PACKAGE="huge")
+			# 	if(is.null(out.glasso))
+			# 		out.glasso = .Call("_huge_hugeglassoscrEigen", S = as.matrix(S[z,z]), W = as.matrix(S[z,z]), T = as.matrix(diag(q)), dd = as.integer(q),lambda = as.double(lambda[i]), df = as.integer(0), PACKAGE="huge")
+			# }
 			
 			out.glasso$T = matrix(out.glasso$T,ncol=q)
 			out.glasso$W = matrix(out.glasso$W,ncol=q)
