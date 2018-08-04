@@ -115,9 +115,7 @@ huge.select = function(est, criterion = NULL, ebic.gamma = 0.5, stars.thresh = 0
 				r = 1:n
 			} 
 			
-			out=.C("RIC",X = as.double(est$data),dd = as.integer(d),nn=as.integer(n),r=as.integer(r),nr=as.integer(nr),lambda_opt = as.double(0),PACKAGE="huge")
-			est$opt.lambda = out$lambda_opt/n
-			rm(out)
+			est$opt.lambda = .Call("_huge_RIC", est$data,d,n,r,nr)*1.0/n
 			gc()
 		
 			if(verbose){

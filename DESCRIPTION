@@ -6,7 +6,7 @@ Author: Tuo Zhao, Xingguo Li, Haoming Jiang, Han Liu, Kathryn Roeder, John Laffe
         Wasserman
 Maintainer: Haoming Jiang <hjiang98@gatech.edu>
 Depends: R (>= 3.0.0), Matrix, lattice, igraph, MASS
-Imports: 
+Imports:
     grDevices,
     graphics,
     methods,
@@ -43,7 +43,7 @@ NeedsCompilation: yes
 Packaged: 2015-09-15 17:56:38 UTC; tuozhao
 Date/Publication: 2015-09-16 10:05:23
 RoxygenNote: 6.0.1
-Suggests: 
+Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr

@@ -1,30 +1,17 @@
-#include "R.h"
 #include "math.h"
-#include "Rcpp.h"
-#include "RcppEigen.h"
-//[[Rcpp::depends(RcppEigen)]]
+#include <omp.h>
+#include <Rcpp.h>
+#include <RcppEigen.h>
 using namespace Rcpp;
+//[[Rcpp::depends(RcppEigen)]]
+//[[Rcpp::plugins(openmp)]
 //[[Rcpp::export]]
-List hugeglassoscrEigen(Eigen::MatrixXd S, Eigen::MatrixXd W, Eigen::MatrixXd T, int dd, double lambda, int df)
+List hugeglassoscr(Eigen::MatrixXd &S, Eigen::MatrixXd &W, Eigen::MatrixXd &T, int d, double ilambda)
 {
-
-    double ilambda;
-    int d;
-    int d2;
-    ilambda = lambda;
-    d = dd;
-    d2 = d*d;
+    int df = 0;
 
     int i,j,k; //initialize indices
     int rss_idx,w_idx;
-    int tmp_i;
-    int tmp_j,tmp_a;
-
-    //Eigen::MatrixXd S, W, T;
-    /*Eigen::Map<Eigen::MatrixXd> S(S1, d, d);
-    Eigen::Map<Eigen::MatrixXd> W(W1, d, d);
-    Eigen::Map<Eigen::MatrixXd> T(T1, d, d);*/
-
 
     int gap_int;
     double gap_ext,gap_act;
@@ -38,9 +25,8 @@ List hugeglassoscrEigen(Eigen::MatrixXd S, Eigen::MatrixXd W, Eigen::MatrixXd T,
 
 
 
-    Eigen::MatrixXi idx_a, idx_i;
-    idx_a.resize(d, d);//active sets
-    idx_i.resize(d, d);//inactive sets
+    Eigen::MatrixXi idx_a(d, d); // active set
+    Eigen::MatrixXi idx_i(d, d); // The set possibly can join active set
     int *size_a = (int*) malloc(d*sizeof(int)); //sizes of active sets
     double *w1 = (double*) malloc(d*sizeof(double));
     double *ww = (double*) malloc(d*sizeof(double));
@@ -54,7 +40,7 @@ List hugeglassoscrEigen(Eigen::MatrixXd S, Eigen::MatrixXd W, Eigen::MatrixXd T,
 
     //Given the initial input W and T, recover inital solution for each individual lasso
     for(i=0;i<d;i++){
-  
+
         W(i, i) = S(i, i) + ilambda; //The diagonal elements are set optimal
         size_a[i] = 0;
         tmp1 = T(i, i);
@@ -214,7 +200,7 @@ List hugeglassoscrEigen(Eigen::MatrixXd S, Eigen::MatrixXd W, Eigen::MatrixXd T,
               W(j, i) = temp(j, 0);
               W(i, j) = temp(j, 0);
             }
-           
+
 
             for(j=0;j<d;j++)
                 tmp5 = tmp5 + fabs(ww[j]-T(j, i));
@@ -229,18 +215,14 @@ List hugeglassoscrEigen(Eigen::MatrixXd S, Eigen::MatrixXd W, Eigen::MatrixXd T,
     {
         tmp2 = 0;
         tmp2 = W.col(i).transpose()*T.col(i) - W(i, i)*T(i, i);
-       
+
         tmp1 = 1/(W(i, i)-tmp2);
-        T.col(i) = -tmp1*T.col(i);
+        T.col(i) *= -tmp1;
         T(i, i) = tmp1;
     }
     for(i=0;i<d;i++)
         df += size_a[i];
-    /*S1 = S.data();
-    T1 = T.data();
-    W1 = W.data();
-    //free(idx_a);
-    //free(idx_i);*/
+
     free(size_a);
     free(w1);
     free(ww);
