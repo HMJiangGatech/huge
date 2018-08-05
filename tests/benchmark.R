@@ -1,27 +1,85 @@
+library(huge)
 #generate data
+
+trialN = 10
+
+cat("---------------------------------------------\n")
+cat("--------------without scr--------------------\n")
+cat("---------------------------------------------\n")
 set.seed(123)
-L = huge.generator(n = 50, d = 12, graph = "hub", g = 4)
+L = huge.generator(n = 100, d = 200, graph = "hub", g = 10)
+t <- c()
+for( i in 1:trialN){
+  cat(".")
+  t <- c(system.time(huge(L$data, method = "glasso", verbose = F))[1],t)
+}
+cat("\n")
+cat("n=100\t d=200\t mean: ", mean(t), "\tvar: ", var(t), "\n")
+set.seed(123)
+L = huge.generator(n = 1000, d = 200, graph = "hub", g = 10)
+t <- c()
+for( i in 1:trialN){
+  cat(".")
+  t <- c(system.time(huge(L$data, method = "glasso", verbose = F))[1],t)
+}
+cat("\n")
+cat("n=1000\t d=200\t mean: ", mean(t), "\tvar: ", var(t), "\n")
+set.seed(123)
+L = huge.generator(n = 100, d = 500, graph = "hub", g = 10)
+t <- c()
+for( i in 1:trialN){
+  cat(".")
+  t <- c(system.time(huge(L$data, method = "glasso", verbose = F))[1],t)
+}
+cat("\n")
+cat("n=100\t d=500\t mean: ", mean(t), "\tvar: ", var(t), "\n")
+set.seed(123)
+L = huge.generator(n = 1000, d = 500, graph = "hub", g = 10)
+t <- c()
+for( i in 1:trialN){
+  cat(".")
+  t <- c(system.time(huge(L$data, method = "glasso", verbose = F))[1],t)
+}
+cat("\n")
+cat("n=1000\t d=500\t mean: ", mean(t), "\tvar: ", var(t), "\n")
 
-#graph path estimation using mb
-out1 = huge(L$data)
-out1
-plot(out1)				 #Not aligned	
-plot(out1, align = TRUE) #Aligned
-huge.plot(out1$path[[3]])
+cat("---------------------------------------------\n")
+cat("---------------with scr----------------------\n")
+cat("---------------------------------------------\n")
+set.seed(123)
+L = huge.generator(n = 100, d = 200, graph = "hub", g = 10)
+t <- c()
+for( i in 1:trialN){
+  cat(".")
+  t <- c(system.time(huge(L$data, method = "glasso", verbose = F, scr = T))[1],t)
+}
+cat("\n")
+cat("n=100\t d=200\t mean: ", mean(t), "\tvar: ", var(t), "\n")
+set.seed(123)
+L = huge.generator(n = 1000, d = 200, graph = "hub", g = 10)
+t <- c()
+for( i in 1:trialN){
+  cat(".")
+  t <- c(system.time(huge(L$data, method = "glasso", verbose = F, scr = T))[1],t)
+}
+cat("\n")
+cat("n=1000\t d=200\t mean: ", mean(t), "\tvar: ", var(t), "\n")
+set.seed(123)
+L = huge.generator(n = 100, d = 500, graph = "hub", g = 10)
+t <- c()
+for( i in 1:trialN){
+  cat(".")
+  t <- c(system.time(huge(L$data, method = "glasso", verbose = F, scr = T))[1],t)
+}
+cat("\n")
+cat("n=100\t d=500\t mean: ", mean(t), "\tvar: ", var(t), "\n")
+set.seed(123)
+L = huge.generator(n = 1000, d = 500, graph = "hub", g = 10)
+t <- c()
+for( i in 1:trialN){
+  cat(".")
+  t <- c(system.time(huge(L$data, method = "glasso", verbose = F, scr = T))[1],t)
+}
+cat("\n")
+cat("n=1000\t d=500\t mean: ", mean(t), "\tvar: ", var(t), "\n")
 
-#graph path estimation using the sample covariance matrix as the input.
-out1 = huge(cor(L$data))
-out1
-plot(out1)				 #Not aligned
-plot(out1, align = TRUE) #Aligned
-huge.plot(out1$path[[3]])
-
-#graph path estimation using ct
-out2 = huge(L$data,method = "ct")
-out2
-plot(out2)
-
-#graph path estimation using glasso
-out3 = huge(L$data, method = "glasso")
-out3
-plot(out3)

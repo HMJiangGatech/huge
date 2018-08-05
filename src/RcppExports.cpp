@@ -7,32 +7,17 @@
 using namespace Rcpp;
 
 // hugeglasso
-List hugeglasso(Eigen::MatrixXd& S, Eigen::MatrixXd& W, Eigen::MatrixXd& T, int d, double ilambda);
-RcppExport SEXP _huge_hugeglasso(SEXP SSEXP, SEXP WSEXP, SEXP TSEXP, SEXP dSEXP, SEXP ilambdaSEXP) {
+List hugeglasso(Eigen::MatrixXd& S, NumericVector lambda, bool scr, bool verbose, bool cov_output);
+RcppExport SEXP _huge_hugeglasso(SEXP SSEXP, SEXP lambdaSEXP, SEXP scrSEXP, SEXP verboseSEXP, SEXP cov_outputSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type S(SSEXP);
-    Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type W(WSEXP);
-    Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type T(TSEXP);
-    Rcpp::traits::input_parameter< int >::type d(dSEXP);
-    Rcpp::traits::input_parameter< double >::type ilambda(ilambdaSEXP);
-    rcpp_result_gen = Rcpp::wrap(hugeglasso(S, W, T, d, ilambda));
-    return rcpp_result_gen;
-END_RCPP
-}
-// hugeglassoscr
-List hugeglassoscr(Eigen::MatrixXd& S, Eigen::MatrixXd& W, Eigen::MatrixXd& T, int d, double ilambda);
-RcppExport SEXP _huge_hugeglassoscr(SEXP SSEXP, SEXP WSEXP, SEXP TSEXP, SEXP dSEXP, SEXP ilambdaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type S(SSEXP);
-    Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type W(WSEXP);
-    Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type T(TSEXP);
-    Rcpp::traits::input_parameter< int >::type d(dSEXP);
-    Rcpp::traits::input_parameter< double >::type ilambda(ilambdaSEXP);
-    rcpp_result_gen = Rcpp::wrap(hugeglassoscr(S, W, T, d, ilambda));
+    Rcpp::traits::input_parameter< NumericVector >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< bool >::type scr(scrSEXP);
+    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
+    Rcpp::traits::input_parameter< bool >::type cov_output(cov_outputSEXP);
+    rcpp_result_gen = Rcpp::wrap(hugeglasso(S, lambda, scr, verbose, cov_output));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -102,7 +87,6 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_huge_hugeglasso", (DL_FUNC) &_huge_hugeglasso, 5},
-    {"_huge_hugeglassoscr", (DL_FUNC) &_huge_hugeglassoscr, 5},
     {"_huge_RIC", (DL_FUNC) &_huge_RIC, 5},
     {"_huge_SFGen", (DL_FUNC) &_huge_SFGen, 2},
     {"_huge_SPMBgraph", (DL_FUNC) &_huge_SPMBgraph, 7},
