@@ -71,20 +71,20 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
 		gc()
 	}
 	maxdf = min(d,n);
-   	if(scr)
-   	{
-   		
-   		if(verbose)
-   		{
-   			cat("Conducting Meinshausen & Buhlmann graph estimation (mb) with lossy screening....")
-        	flush.console()
-   		}
+ 	if(scr)
+ 	{
+ 		
+ 		if(verbose)
+ 		{
+ 			cat("Conducting Meinshausen & Buhlmann graph estimation (mb) with lossy screening....")
+      	flush.console()
+ 		}
 
 		if(is.null(idx.mat))
 			idx.mat = apply(-abs(S),2,order)[2:(scr.num+1),] - 1
 		
 		fit$idx.mat = idx.mat
-		out=.C("SPMBscr", S=as.double(S), idx_scr=as.integer(idx.mat), lambda=as.double(lambda), nnlambda = as.integer(nlambda), dd = as.integer(d), nnscr = as.integer(scr.num), x = as.double(rep(0,d*maxdf*nlambda)),col_cnz = as.integer(rep(0,d+1)), row_idx = as.integer(rep(0,d*maxdf*nlambda)),PACKAGE="huge")
+		out = .Call('_huge_SPMBscr', S, idx.mat, lambda, nlambda, d, scr.num, as.double(rep(0,d*maxdf*nlambda)), as.integer(rep(0,d+1)), as.integer(rep(0,d*maxdf*nlambda)))
 		for(i in 1:d)
 		{
 			if(out$col_cnz[i+1]>out$col_cnz[i])
@@ -97,15 +97,15 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
 		}
 	}
    	   	
-   	if(!scr)
-   	{
-   		if(verbose)
-   		{
-   			cat("Conducting Meinshausen & Buhlmann graph estimation (mb)....")
-        	flush.console()
-   		}
+ 	if(!scr)
+  {
+ 		if(verbose)
+ 		{
+ 			cat("Conducting Meinshausen & Buhlmann graph estimation (mb)....")
+      	flush.console()
+ 		}
 		fit$idx_mat = NULL
-		out=.C("SPMBgraph", S=as.double(S), lambda=as.double(lambda), nnlambda = as.integer(nlambda), dd = as.integer(d), x = as.double(rep(0,d*maxdf*nlambda)),col_cnz = as.integer(rep(0,d+1)), row_idx = as.integer(rep(0,d*maxdf*nlambda)),PACKAGE="huge")
+		out = .Call("_huge_SPMBgraph", S, lambda, nlambda, d, as.double(rep(0,d*maxdf*nlambda)),as.integer(rep(0,d+1)), as.integer(rep(0,d*maxdf*nlambda)))
 		for(i in 1:d)
 		{
 			if(out$col_cnz[i+1]>out$col_cnz[i])
@@ -132,27 +132,23 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
 		fit$path[[i]] = abs(fit$beta[[i]])
 		fit$df[,i] = apply(sign(fit$path[[i]]),2,sum)
 		
-		print("-------------------")
-		print(fit$beta[[i]])
-		print("-------------------")
-		
 		if(sym == "or")
 			fit$path[[i]] = sign(fit$path[[i]] + t(as.matrix(fit$path[[i]])))
 		if(sym == "and")
 			fit$path[[i]] = sign(fit$path[[i]] * t(fit$path[[i]]))
 		fit$sparsity[i] = sum(fit$path[[i]])/d/(d-1)
 	}
-   	rm(G, out)
-   	
-   	fit$lambda = lambda
+ 	rm(G, out)
+ 	
+ 	fit$lambda = lambda
 
 	if(verbose)
-   	{
-   		cat("done\n")
-        flush.console()
-    }
-   		
-   	rm(verbose,nlambda)
-   	gc()
-   	return(fit)
+ 	{
+ 		cat("done\n")
+      flush.console()
+  }
+ 		
+ 	rm(verbose,nlambda)
+ 	gc()
+ 	return(fit)
 }

@@ -13,12 +13,13 @@ Graph Estimation](https://cran.r-project.org/web/packages/huge/vignettes/vignett
 
 ### Code Refactoring and Benchmarking
 - [x] Use `roxygen2` to manage Documents.
-- [ ] Benchmark the code.
-- [ ] Use `RcppEigen` to accelerate the code.
-- [ ] Use `OpenMP` to enable multi-processing.
+- [x] Benchmark the code.
+- [x] Use `RcppEigen` to accelerate the code.
+- [x] Refactor `huge.glasso`
+- [x] Use `OpenMP` to enable multi-processing.
 
 ### Solver Upgrade
-- [ ] Implement Active Set Newton solver.
+- [x] Implement Active Set Newton solver.
 
 ### Inference Module
 - [ ] Add inference module
