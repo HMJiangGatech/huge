@@ -27,7 +27,7 @@ List SPMBgraph(NumericMatrix &S, NumericVector &lambda, int nlambda, int d, Nume
     int *idx_a = (int*) malloc(d*sizeof(int)); //sizes of active sets
     int *idx_i = (int*) malloc(d*sizeof(int)); //sizes of active sets
 
-	  cnz = 0;
+    cnz = 0;
 
     for(m=0;m<d;m++)
     {
@@ -41,14 +41,14 @@ List SPMBgraph(NumericMatrix &S, NumericVector &lambda, int nlambda, int d, Nume
         for(j=0;j<d;j++)
             w0[j] = 0;
 
-				for(i=0;i<nlambda;i++)
+        for(i=0;i<nlambda;i++)
         {
             ilambda = lambda[i];
             gap_ext = 1;
             iter_ext = 0;
             while(gap_ext !=0 && iter_ext<MAX_ITER)
             {
-								size_a_prev = size_a;
+                size_a_prev = size_a;
                 for(j=0;j<d;j++)
                 {
                     if(idx_i[j]==1)
@@ -136,24 +136,24 @@ List SPMBgraph(NumericMatrix &S, NumericVector &lambda, int nlambda, int d, Nume
                 size_a = size_a - junk_a;
                 iter_ext++;
             }
-					for(j=0;j<size_a;j++)
-					{
-						w_idx = idx_a[j];
-						x[cnz] = w1[w_idx];
-						row_idx[cnz] = i*d+w_idx;
-						cnz++;
-					}
+          for(j=0;j<size_a;j++)
+          {
+            w_idx = idx_a[j];
+            x[cnz] = w1[w_idx];
+            row_idx[cnz] = i*d+w_idx;
+            cnz++;
+          }
         }
-				col_cnz[m+1]=cnz;
+        col_cnz[m+1]=cnz;
     }
     free(w0);
     free(w1);
     free(idx_a);
     free(idx_i);
 
-	  return List::create(
-	    _["col_cnz"] = col_cnz,
-	    _["row_idx"] = row_idx,
-	    _["x"] = x
-	  );
+    return List::create(
+      _["col_cnz"] = col_cnz,
+      _["row_idx"] = row_idx,
+      _["x"] = x
+    );
 }

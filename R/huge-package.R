@@ -18,7 +18,7 @@ NULL
 #' The package "huge" provides 8 main functions:\cr
 #' (1) the data generator creates random samples from multivariate normal distributions with different graph structures. Please refer to \code{\link{huge.generator}}.\cr
 #' (2) the nonparanormal (npn) transformation helps relax the normality assumption. Please refer to \code{\link{huge.npn}}.\cr
-#' (3) The correlation thresholding graph estimation. Please refer to \code{\link{huge}}.\cr 
+#' (3) The correlation thresholding graph estimation. Please refer to \code{\link{huge}}.\cr
 #' (4) The Meinshausen-Buhlmann graph estimation. Please refer to \code{\link{huge}}.\cr
 #' (5) The graphical Lasso algorithm using lossless screening rule. Please refer and \code{\link{huge}}.\cr
 #' \cr
@@ -31,7 +31,7 @@ NULL
 #' @aliases huge-package
 #' @author Tuo Zhao, Han Liu, Haoming Jiang, Kathryn Roeder, John Lafferty, and Larry Wasserman \cr
 #' Maintainers: Haoming Jiang<hjiang98@gatech.edu>;
-#' @references 
+#' @references
 #' 1.  T. Zhao and H. Liu. The huge Package for High-dimensional Undirected Graph Estimation in R. \emph{Journal of Machine Learning Research}, 2012\cr
 #' 2.  H. Liu, F. Han, M. Yuan, J. Lafferty and L. Wasserman. High Dimensional Semiparametric Gaussian Copula Graphical Models. \emph{Annals of Statistics},2012 \cr
 #' 3.  D. Witten and J. Friedman. New insights and faster computations for the graphical lasso. \emph{Journal of Computational and Graphical Statistics}, to appear, 2011.
@@ -50,7 +50,7 @@ NULL
 #' Stock price of S&P 500 companies from 2003 to 2008
 #'
 #' This data set consists of stock price and company information.
-#' 
+#'
 #' This data set can be used to perform high-dimensional graph estimation to analyze the relationships between S&P 500 companies.
 #'
 #' @usage data(stockdata)
@@ -58,7 +58,7 @@ NULL
 #' The format is a list containing conatins two matrices.
 #' 1. data - 1258x452, represents the 452 stocks' close prices for 1258 trading days.
 #'   2. info - 452x3:
-#'   The 1st column: the query symbol for each company. 
+#'   The 1st column: the query symbol for each company.
 #'   The 2nd column: the categoriy for each company.
 #'   The 3rd column: the full name of each company.
 #' @source It is publicly available at \url{http://ichart.finance.yahoo.com}

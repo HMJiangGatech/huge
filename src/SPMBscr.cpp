@@ -25,7 +25,7 @@ List SPMBscr(NumericMatrix &S, IntegerMatrix &idx_scr, NumericVector &lambda, in
     int *idx_a = (int*) malloc(nscr*sizeof(int)); //sizes of active sets
     int *idx_i = (int*) malloc(nscr*sizeof(int)); //sizes of active sets
 
-		cnz = 0;
+    cnz = 0;
 
     for(m=0;m<d;m++)
     {
@@ -37,14 +37,14 @@ List SPMBscr(NumericMatrix &S, IntegerMatrix &idx_scr, NumericVector &lambda, in
         for(j=0;j<d;j++)
             w0[j] = 0;
 
-				for(i=0;i<nlambda;i++)
+        for(i=0;i<nlambda;i++)
         {
             ilambda = lambda[i];
             gap_ext = 1;
             iter_ext = 0;
             while(iter_ext<MAX_ITER && gap_ext>0)
             {
-								size_a_prev = size_a;
+                size_a_prev = size_a;
                 for(j=0;j<nscr;j++)
                 {
                     w_idx = idx_i[j];
@@ -89,7 +89,7 @@ List SPMBscr(NumericMatrix &S, IntegerMatrix &idx_scr, NumericVector &lambda, in
                     for(j=0;j<size_a;j++)
                     {
                         w_idx = idx_a[j];
-												r = S(w_idx,m) + w0[w_idx];
+                        r = S(w_idx,m) + w0[w_idx];
 
                         for(k=0;k<size_a;k++)
                         {
@@ -112,7 +112,7 @@ List SPMBscr(NumericMatrix &S, IntegerMatrix &idx_scr, NumericVector &lambda, in
                         else w1[w_idx] = 0;
 
                         tmp1 += fabs(w1[w_idx] - w0[w_idx]);
-						w0[w_idx] = w1[w_idx];
+                        w0[w_idx] = w1[w_idx];
                     }
                     gap_int = tmp1/tmp2;
                     iter_int++;
@@ -134,9 +134,9 @@ List SPMBscr(NumericMatrix &S, IntegerMatrix &idx_scr, NumericVector &lambda, in
     free(idx_a);
     free(idx_i);
 
-	  return List::create(
-	    _["col_cnz"] = col_cnz,
-	    _["row_idx"] = row_idx,
-	    _["x"] = x
-	  );
+    return List::create(
+      _["col_cnz"] = col_cnz,
+      _["row_idx"] = row_idx,
+      _["x"] = x
+    );
 }

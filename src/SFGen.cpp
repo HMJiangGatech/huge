@@ -47,7 +47,7 @@ List SFGen(int d0, int d){
     }
     Free(size_a);
 
-	  return List::create(
-	    _["G"] = G
-	  );
+    return List::create(
+      _["G"] = G
+    );
 }

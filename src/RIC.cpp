@@ -5,12 +5,12 @@ using namespace Rcpp;
 //[[Rcpp::export]]
 double RIC(NumericMatrix &X, int d, int n, NumericVector &r, int t)
 {
-		int i,j,k,m;
+    int i,j,k,m;
     int tmp_r;
 
-		double lambda_min,lambda_max,tmp;
+    double lambda_min,lambda_max,tmp;
 
-		lambda_min = 99999999;
+    lambda_min = 99999999;
 
     for(i=0;i<t;i++)
     {
