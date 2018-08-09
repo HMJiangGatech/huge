@@ -71,24 +71,24 @@ huge.generator = function(n = 200, d = 50, graph = "random", v = NULL, u = NULL,
   gcinfo(FALSE)
   if(verbose) cat("Generating data from the multivariate normal distribution with the", graph,"graph structure....")
   if(is.null(g)){
-  g = 1
-  if(graph == "hub" || graph == "cluster"){
-  if(d > 40)  g = ceiling(d/20)
-  if(d <= 40) g = 2
-  }
+    g = 1
+    if(graph == "hub" || graph == "cluster"){
+      if(d > 40)  g = ceiling(d/20)
+      if(d <= 40) g = 2
+    }
   }
 
   if(graph == "random"){
-  if(is.null(prob))  prob = min(1, 3/d)
-  prob = sqrt(prob/2)*(prob<0.5)+(1-sqrt(0.5-0.5*prob))*(prob>=0.5)
+    if(is.null(prob))  prob = min(1, 3/d)
+    prob = sqrt(prob/2)*(prob<0.5)+(1-sqrt(0.5-0.5*prob))*(prob>=0.5)
   }
 
   if(graph == "cluster"){
-  if(is.null(prob)){
-  if(d/g > 30)  prob = 0.3
-  if(d/g <= 30)  prob = min(1,6*g/d)
-  }
-  prob = sqrt(prob/2)*(prob<0.5)+(1-sqrt(0.5-0.5*prob))*(prob>=0.5)
+    if(is.null(prob)){
+      if(d/g > 30)  prob = 0.3
+      if(d/g <= 30)  prob = min(1,6*g/d)
+    }
+    prob = sqrt(prob/2)*(prob<0.5)+(1-sqrt(0.5-0.5*prob))*(prob>=0.5)
   }
 
 
@@ -105,24 +105,24 @@ huge.generator = function(n = 200, d = 50, graph = "random", v = NULL, u = NULL,
   # build the graph structure
   theta = matrix(0,d,d);
   if(graph == "band"){
-  if(is.null(u)) u = 0.1
-  if(is.null(v)) v = 0.3
-  for(i in 1:g){
-  diag(theta[1:(d-i),(1+i):d]) = 1
-  diag(theta[(1+i):d,1:(d-1)]) = 1
-  }
+    if(is.null(u)) u = 0.1
+    if(is.null(v)) v = 0.3
+    for(i in 1:g){
+      diag(theta[1:(d-i),(1+i):d]) = 1
+      diag(theta[(1+i):d,1:(d-1)]) = 1
+    }
   }
   if(graph == "cluster"){
-  if(is.null(u)) u = 0.1
-  if(is.null(v)) v = 0.3
-  for(i in 1:g){
-     tmp = which(g.ind==i)
-     tmp2 = matrix(runif(length(tmp)^2,0,0.5),length(tmp),length(tmp))
-     tmp2 = tmp2 + t(tmp2)
-     theta[tmp,tmp][tmp2<prob] = 1
-     rm(tmp,tmp2)
-     gc()
-  }
+    if(is.null(u)) u = 0.1
+    if(is.null(v)) v = 0.3
+    for(i in 1:g){
+       tmp = which(g.ind==i)
+       tmp2 = matrix(runif(length(tmp)^2,0,0.5),length(tmp),length(tmp))
+       tmp2 = tmp2 + t(tmp2)
+       theta[tmp,tmp][tmp2<prob] = 1
+       rm(tmp,tmp2)
+       gc()
+    }
   }
   if(graph == "hub"){
   if(is.null(u)) u = 0.1
@@ -136,15 +136,15 @@ huge.generator = function(n = 200, d = 50, graph = "random", v = NULL, u = NULL,
   }
   }
   if(graph == "random"){
-  if(is.null(u)) u = 0.1
-  if(is.null(v)) v = 0.3
-
-  tmp = matrix(runif(d^2,0,0.5),d,d)
-  tmp = tmp + t(tmp)
-  theta[tmp < prob] = 1
-  #theta[tmp >= tprob] = 0
-  rm(tmp)
-  gc()
+    if(is.null(u)) u = 0.1
+    if(is.null(v)) v = 0.3
+  
+    tmp = matrix(runif(d^2,0,0.5),d,d)
+    tmp = tmp + t(tmp)
+    theta[tmp < prob] = 1
+    #theta[tmp >= tprob] = 0
+    rm(tmp)
+    gc()
   }
 
   if(graph == "scale-free"){
