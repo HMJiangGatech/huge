@@ -4,8 +4,8 @@
 \alias{huge.generator}
 \title{Data generator}
 \usage{
-huge.generator(n = 200, d = 50, graph = "random", v = NULL, u = NULL,
-  g = NULL, prob = NULL, vis = FALSE, verbose = TRUE)
+huge.generator(n = 200, d = 50, graph = "random", v = NULL,
+  u = NULL, g = NULL, prob = NULL, vis = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{n}{The number of observations (sample size). The default value is \code{200}.}

@@ -4,7 +4,8 @@
 \alias{huge.npn}
 \title{Nonparanormal(npn) transformation}
 \usage{
-huge.npn(x, npn.func = "shrinkage", npn.thresh = NULL, verbose = TRUE)
+huge.npn(x, npn.func = "shrinkage", npn.thresh = NULL,
+  verbose = TRUE)
 }
 \arguments{
 \item{x}{The \code{n} by \code{d} data matrix representing \code{n} observations in \code{d} dimensions}
