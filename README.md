@@ -56,8 +56,8 @@ For detailed implementation of the experiments, please refer to `tests/benchmark
 
 ### Graph Estimation
 
-We compared our package on hub graph with (n=50,d=12) with other packages, namely, grplasso, grpreg and gglasso.
-Huge significantly outperforms clime, QUIC and original huge in timing performance.
+We compared our package on hub graph with (n=200,d=200) with other packages, namely, grplasso, grpreg and gglasso.
+Huge significantly outperforms clime, QUIC and original huge in timing performance. We also calculated the likelihood for estimation.
 
 <center>
 <table>
@@ -69,9 +69,12 @@ Huge significantly outperforms clime, QUIC and original huge in timing performan
   </thead>
   <tbody>
     <tr>
-      <td><center>Huge</center></td>
+      <td><center>Huge glasso</center></td>
       <td><center>1.12</center></td>
     </tr>
+    <tr>
+      <td><center>Huge tiger</center></td>
+      <td><center>1.88</center></td>
     <tr>
       <td><center>Huge v1.2.7</center></td>
       <td><center>1.80</center></td>
@@ -88,7 +91,35 @@ Huge significantly outperforms clime, QUIC and original huge in timing performan
 </table>
 </center>
 
-### Graph Inference.
+<center>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Object value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><center>Huge glasso</center></td>
+      <td><center>-125.96</center></td>
+    </tr>
+    <tr>
+      <td><center>Huge tiger</center></td>
+      <td><center>-125.47</center></td>
+	<tr>
+	  <td><center>QUIC</center></td>
+      <td><center>-90.58</center></td>
+	</tr>
+	<tr>
+	  <td><center>Clime</center></td>
+      <td><center>-136.96</center></td>
+	</tr>
+  </tbody>
+</table>
+</center>
+
+### Graph Inference
 When using the Gaussian graphical model, huge controls the type I error well.
 
 <center>

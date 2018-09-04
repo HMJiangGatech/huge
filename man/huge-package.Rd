@@ -20,7 +20,7 @@ A package for high-dimensional undirected graph estimation
 The package "huge" provides 8 main functions:\cr
 (1) the data generator creates random samples from multivariate normal distributions with different graph structures. Please refer to \code{\link{huge.generator}}.\cr
 (2) the nonparanormal (npn) transformation helps relax the normality assumption. Please refer to \code{\link{huge.npn}}.\cr
-(3) The correlation thresholding graph estimation. Please refer to \code{\link{huge}}.\cr 
+(3) The correlation thresholding graph estimation. Please refer to \code{\link{huge}}.\cr
 (4) The Meinshausen-Buhlmann graph estimation. Please refer to \code{\link{huge}}.\cr
 (5) The graphical Lasso algorithm using lossless screening rule. Please refer and \code{\link{huge}}.\cr
 \cr

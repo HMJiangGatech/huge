@@ -39,7 +39,7 @@ huge.plot(L$theta)
 
 #show working directory
 getwd()
-#plot 5 graphs and save the plots as eps files in the working directory  
+#plot 5 graphs and save the plots as eps files in the working directory
 huge.plot(L$theta, epsflag = TRUE, cur.num = 5)
 }
 \seealso{

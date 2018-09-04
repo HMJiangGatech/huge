@@ -65,6 +65,40 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// SPMBgraphlasso
+List SPMBgraphlasso(Eigen::MatrixXd& data, NumericVector& lambda, int nlambda, int d, NumericVector& x, IntegerVector& col_cnz, IntegerVector& row_idx);
+RcppExport SEXP _huge_SPMBgraphlasso(SEXP dataSEXP, SEXP lambdaSEXP, SEXP nlambdaSEXP, SEXP dSEXP, SEXP xSEXP, SEXP col_cnzSEXP, SEXP row_idxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type data(dataSEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< int >::type nlambda(nlambdaSEXP);
+    Rcpp::traits::input_parameter< int >::type d(dSEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< IntegerVector& >::type col_cnz(col_cnzSEXP);
+    Rcpp::traits::input_parameter< IntegerVector& >::type row_idx(row_idxSEXP);
+    rcpp_result_gen = Rcpp::wrap(SPMBgraphlasso(data, lambda, nlambda, d, x, col_cnz, row_idx));
+    return rcpp_result_gen;
+END_RCPP
+}
+// SPMBgraphsqrt
+List SPMBgraphsqrt(Eigen::MatrixXd& data, NumericVector& lambda, int nlambda, int d, NumericVector& x, IntegerVector& col_cnz, IntegerVector& row_idx);
+RcppExport SEXP _huge_SPMBgraphsqrt(SEXP dataSEXP, SEXP lambdaSEXP, SEXP nlambdaSEXP, SEXP dSEXP, SEXP xSEXP, SEXP col_cnzSEXP, SEXP row_idxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type data(dataSEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< int >::type nlambda(nlambdaSEXP);
+    Rcpp::traits::input_parameter< int >::type d(dSEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< IntegerVector& >::type col_cnz(col_cnzSEXP);
+    Rcpp::traits::input_parameter< IntegerVector& >::type row_idx(row_idxSEXP);
+    rcpp_result_gen = Rcpp::wrap(SPMBgraphsqrt(data, lambda, nlambda, d, x, col_cnz, row_idx));
+    return rcpp_result_gen;
+END_RCPP
+}
 // SPMBscr
 List SPMBscr(NumericMatrix& S, IntegerMatrix& idx_scr, NumericVector& lambda, int nlambda, int d, int nscr, NumericVector& x, IntegerVector& col_cnz, IntegerVector& row_idx);
 RcppExport SEXP _huge_SPMBscr(SEXP SSEXP, SEXP idx_scrSEXP, SEXP lambdaSEXP, SEXP nlambdaSEXP, SEXP dSEXP, SEXP nscrSEXP, SEXP xSEXP, SEXP col_cnzSEXP, SEXP row_idxSEXP) {
@@ -90,6 +124,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_huge_RIC", (DL_FUNC) &_huge_RIC, 5},
     {"_huge_SFGen", (DL_FUNC) &_huge_SFGen, 2},
     {"_huge_SPMBgraph", (DL_FUNC) &_huge_SPMBgraph, 7},
+    {"_huge_SPMBgraphlasso", (DL_FUNC) &_huge_SPMBgraphlasso, 7},
+    {"_huge_SPMBgraphsqrt", (DL_FUNC) &_huge_SPMBgraphsqrt, 7},
     {"_huge_SPMBscr", (DL_FUNC) &_huge_SPMBscr, 9},
     {NULL, NULL, 0}
 };

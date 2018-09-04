@@ -17,6 +17,14 @@ SPMBgraph <- function(S, lambda, nlambda, d, x, col_cnz, row_idx) {
     .Call(`_huge_SPMBgraph`, S, lambda, nlambda, d, x, col_cnz, row_idx)
 }
 
+SPMBgraphlasso <- function(data, lambda, nlambda, d, x, col_cnz, row_idx) {
+    .Call(`_huge_SPMBgraphlasso`, data, lambda, nlambda, d, x, col_cnz, row_idx)
+}
+
+SPMBgraphsqrt <- function(data, lambda, nlambda, d, x, col_cnz, row_idx) {
+    .Call(`_huge_SPMBgraphsqrt`, data, lambda, nlambda, d, x, col_cnz, row_idx)
+}
+
 SPMBscr <- function(S, idx_scr, lambda, nlambda, d, nscr, x, col_cnz, row_idx) {
     .Call(`_huge_SPMBscr`, S, idx_scr, lambda, nlambda, d, nscr, x, col_cnz, row_idx)
 }

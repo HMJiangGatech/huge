@@ -1,6 +1,6 @@
 #-----------------------------------------------------------------------#
 # Package: High-dimensional Undirected Graph Estimation                 #
-# huge.mbgel(): Meinshausen & Buhlmann graph estimation (mb)            #
+# huge.tiger(): Tuning-insensitive graph estimation                     #
 # Authors: Tuo Zhao and Han Liu                                         #
 # Emails: <tzhao5@jhu.edu> and <hanliu@cs.jhu.edu>                      #
 # Date: Jul 15th 2011                                                   #
@@ -8,7 +8,7 @@
 #-----------------------------------------------------------------------#
 
 ## Main function
-huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sym = "or", verbose = TRUE)
+huge.tiger = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sym = "or", verbose = TRUE)
 {
 	gcinfo(FALSE)
 	n = nrow(x);
@@ -45,11 +45,11 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sy
    	   	
 	if(verbose)
 	{
-	  cat("Conducting Meinshausen & Buhlmann graph estimation (mb)....")
+	  cat("Conducting graph estimation through a tunning-insensitive approach(tiger)....")
 	  flush.console()
 	}
 	fit$idx_mat = NULL
-	out = .Call("_huge_SPMBgraphlasso", x, lambda, nlambda, d, as.double(rep(0,d*maxdf*nlambda)),as.integer(rep(0,d+1)), as.integer(rep(0,d*maxdf*nlambda)))
+	out = .Call("_huge_SPMBgraphsqrt", x, lambda, nlambda, d, as.double(rep(0,d*maxdf*nlambda)),as.integer(rep(0,d+1)), as.integer(rep(0,d*maxdf*nlambda)))
 	for(i in 1:d)
 	{
 	  if(out$col_cnz[i+1]>out$col_cnz[i])
