@@ -1,10 +1,6 @@
 #-----------------------------------------------------------------------#
 # Package: High-dimensional Undirected Graph Estimation                 #
 # huge.mbgel(): Meinshausen & Buhlmann graph estimation (mb)            #
-# Authors: Tuo Zhao and Han Liu                                         #
-# Emails: <tzhao5@jhu.edu> and <hanliu@cs.jhu.edu>                      #
-# Date: Jul 15th 2011                                                   #
-# Version: 1.1.0                                                        #
 #-----------------------------------------------------------------------#
 
 ## Main function
@@ -25,9 +21,9 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sy
 		x = scale(x)
 		S = cor(x)
 	}
-	
+
 	gc()
-	
+
 	if(!is.null(lambda)) nlambda = length(lambda)
 	if(is.null(lambda))
 	{
@@ -42,7 +38,7 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sy
 		gc()
 	}
 	maxdf = min(d,n);
-   	   	
+
 	if(verbose)
 	{
 	  cat("Conducting Meinshausen & Buhlmann graph estimation (mb)....")
@@ -60,21 +56,21 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sy
 	    out$x[idx.tmp] = out$x[ord + out$col_cnz[i]]
 	  }
 	}
-	
-	   	
+
+
   G = new("dgCMatrix", Dim = as.integer(c(d*nlambda,d)), x = as.vector(out$x[1:out$col_cnz[d+1]]),p = as.integer(out$col_cnz), i = as.integer(out$row_idx[1:out$col_cnz[d+1]]))
-  
+
 	fit$beta = list()
 	fit$path = list()
 	fit$df = matrix(0,d,nlambda)
-	fit$rss = matrix(0,d,nlambda)	
-	fit$sparsity = rep(0,nlambda)	
+	fit$rss = matrix(0,d,nlambda)
+	fit$sparsity = rep(0,nlambda)
 	for(i in 1:nlambda)
 	{
 		fit$beta[[i]] = G[((i-1)*d+1):(i*d),]
 		fit$path[[i]] = abs(fit$beta[[i]])
 		fit$df[,i] = apply(sign(fit$path[[i]]),2,sum)
-		
+
 		if(sym == "or")
 			fit$path[[i]] = sign(fit$path[[i]] + t(as.matrix(fit$path[[i]])))
 		if(sym == "and")
@@ -83,7 +79,7 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sy
 	}
 	fit$icov = out$icov
  	rm(x, G, out)
- 	
+
  	fit$lambda = lambda
 
 	if(verbose)
@@ -91,7 +87,7 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sy
  		cat("done\n")
       flush.console()
   }
- 		
+
  	rm(verbose,nlambda)
  	gc()
  	return(fit)

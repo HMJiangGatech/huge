@@ -1,16 +1,12 @@
 #-----------------------------------------------------------------------#
 # Package: High-dimensional Undirecte d Graph Estimation                #
 # huge(): The user interface for huge.mb(), huge.glasso() and huge.ct() #
-# Authors: Tuo Zhao and Han Liu                                         #
-# Emails: <tzhao5@jhu.edu> and <hanliu@cs.jhu.edu>                      #
-# Date: Jul 15th 2011                                                   #
-# Version: 1.1.0                                                        #
 #-----------------------------------------------------------------------#
 
 #' High-dimensional undirected graph estimation
 #'
 #' The main function for high-dimensional undirected graph estimation. Three graph estimation methods, including (1) Meinshausen-Buhlmann graph estimation (\code{mb}) (2) graphical lasso (\code{glasso}) (3) correlation thresholding graph estimation (\code{ct}) and (4) tunning-insensitive graph estimation (\code{tiger}), are available for data analysis.
-#' 
+#'
 #' The graph structure is estimated by Meinshausen-Buhlmann graph estimation or the graphical lasso, and both methods can be further accelerated via the lossy screening rule by preselecting the neighborhood of each variable by correlation thresholding. We target on high-dimensional data analysis usually d >> n, and the computation is memory-optimized using the sparse matrix output. We also provide a highly computationally efficient approaches correlation thresholding graph estimation.
 #'
 #' @param x There are 2 options: (1) \code{x} is an \code{n} by \code{d} data matrix (2) a \code{d} by \code{d} sample covariance matrix. The program automatically identifies the input matrix by checking the symmetry. (\code{n} is the sample size and \code{d} is the dimension).
@@ -93,18 +89,18 @@
 #' #out3 = huge(L$data, method = "glasso")
 #' #out3
 #' #plot(out3)
-#' 
+#'
 #' #graph path estimation using tiger
 #' #out4 = huge(L$data, method = "tiger")
 #' #out4
 #' #plot(out4)
 #' @export
 huge = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, method = "mb", scr = NULL, scr.num = NULL, cov.output = FALSE, sym = "or", verbose = TRUE)
-{	
+{
 	gcinfo(FALSE)
 	est = list()
-	est$method = method	
-		
+	est$method = method
+
 	if(method == "ct")
 	{
 		fit = huge.ct(x, nlambda = nlambda, lambda.min.ratio = lambda.min.ratio, lambda = lambda, verbose = verbose)
@@ -115,9 +111,9 @@ huge = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, metho
 		rm(fit)
 		gc()
 	}
-	
+
 	if(method == "mb")
-	{	
+	{
 		fit = huge.mb(x, lambda = lambda, nlambda = nlambda, lambda.min.ratio = lambda.min.ratio, sym = sym, verbose = verbose)
 		est$path = fit$path
 		est$lambda = fit$lambda
@@ -130,8 +126,8 @@ huge = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, metho
 		rm(fit,sym)
 		gc()
 	}
-	
-	
+
+
 	if(method == "glasso")
 	{
 		fit = huge.glasso(x, nlambda = nlambda, lambda.min.ratio = lambda.min.ratio, lambda = lambda, scr = scr, cov.output = cov.output, verbose = verbose)
@@ -144,14 +140,14 @@ huge = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, metho
 		if(cov.output)
 			est$cov = fit$cov
 		est$cov.input = fit$cov.input
-		est$cov.output = fit$cov.output	
+		est$cov.output = fit$cov.output
 		est$scr = fit$scr
 		rm(fit)
 		gc()
 	}
-	
+
 	if(method == "tiger")
-	{	
+	{
 	  fit = huge.tiger(x, lambda = lambda, nlambda = nlambda, lambda.min.ratio = lambda.min.ratio, sym = sym, verbose = verbose)
 	  est$path = fit$path
 	  est$lambda = fit$lambda
@@ -165,9 +161,9 @@ huge = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, metho
 	  rm(fit,sym)
 	  gc()
 	}
-			
+
 	est$data = x
-	
+
 	rm(x,scr,lambda,lambda.min.ratio,nlambda,cov.output,verbose)
 	gc()
 	class(est) = "huge"
@@ -175,15 +171,15 @@ huge = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, metho
 }
 
 #' Print function for S3 class "huge"
-#' 
+#'
 #' Print the information about the model usage, the graph path length, graph dimension, sparsity level.
-#' 
+#'
 #' @param x An object with S3 class \code{"huge"}.
 #' @param \dots System reserved (No specific usage)
 #' @seealso \code{\link{huge}}
 #' @export
 print.huge = function(x, ...)
-{	
+{
 	if(x$method == "ct")
 		cat("Model: graph estimation via correlation thresholding (ct)\n")
 	if(x$method == "glasso")
@@ -192,66 +188,66 @@ print.huge = function(x, ...)
 		cat("Model: Meinshausen & Buhlmann graph estimation (mb)\n")
   if(x$method == "tiger")
     cat("Model: tunning-insensitive approach\n")
-	
+
 	if((x$method == "glasso")&&(x$scr)) cat("lossy screening: on\n")
 
 	if(x$cov.input) cat("Input: The Covariance Matrix\n")
 	if(!x$cov.input) cat("Input: The Data Matrix\n")
-	
+
 	cat("Path length:",length(x$lambda),"\n")
 	cat("Graph dimension:",ncol(x$data),"\n")
 	cat("Sparsity level:",min(x$sparsity),"----->",max(x$sparsity),"\n")
 }
 
 #' Plot function for S3 class "huge"
-#' 
-#' Plot sparsity level information and 3 typical sparse graphs from the graph path. 
-#' 
-#' @param x An object with S3 class \code{"huge"} 
+#'
+#' Plot sparsity level information and 3 typical sparse graphs from the graph path.
+#'
+#' @param x An object with S3 class \code{"huge"}
 #' @param align If \code{align = FALSE}, 3 plotted graphs are aligned
 #' @param \dots System reserved (No specific usage)
 #' @seealso \code{\link{huge}}
 #' @export
 plot.huge = function(x, align = FALSE, ...){
   gcinfo(FALSE)
-	
+
 	if(length(x$lambda) == 1)	par(mfrow = c(1, 2), pty = "s", omi=c(0.3,0.3,0.3,0.3), mai = c(0.3,0.3,0.3,0.3))
 	if(length(x$lambda) == 2)	par(mfrow = c(1, 3), pty = "s", omi=c(0.3,0.3,0.3,0.3), mai = c(0.3,0.3,0.3,0.3))
 	if(length(x$lambda) >= 3)	par(mfrow = c(1, 4), pty = "s", omi=c(0.3,0.3,0.3,0.3), mai = c(0.3,0.3,0.3,0.3))
-	
+
 	if(length(x$lambda) <= 3)	z.final = 1:length(x$lambda)
-	
+
 	if(length(x$lambda) >=4){
 		z.max = max(x$sparsity)
 		z.min = min(x$sparsity)
 		z = z.max - z.min
 		z.unique = unique(c(which(x$sparsity>=(z.min + 0.03*z))[1],which(x$sparsity>=(z.min + 0.07*z))[1],which(x$sparsity>=(z.min + 0.15*z))[1]))
 
-		
+
 		if(length(z.unique) == 1){
 			if(z.unique<(length(x$lambda)-1))	z.final = c(z.unique,z.unique+1,z.unique+2)
 			if(z.unique==(length(x$lambda)-1)) z.final = c(z.unique-1,z.unique,z.unique+1)
 			if(z.unique==length(x$lambda)) 	z.final = c(z.unique-2,z.unique-1,z.unique)
 		}
-		
+
 		if(length(z.unique) == 2){
 			if(diff(z.unique)==1){
-				if(z.unique[2]<length(x$lambda)) z.final = c(z.unique,z.unique[2]+1) 
+				if(z.unique[2]<length(x$lambda)) z.final = c(z.unique,z.unique[2]+1)
 				if(z.unique[2]==length(x$lambda)) z.final = c(z.unique[1]-1,z.unique)
 			}
 			if(diff(z.unique)>1) z.final = c(z.unique[1],z.unique[1]+1,z.unique[2])
 		}
-		
+
 		if(length(z.unique) == 3) z.final = z.unique
-		
+
 		rm(z.max,z.min,z,z.unique)
 		gc()
-		
+
 	}
 	plot(x$lambda, x$sparsity, log = "x", xlab = "Regularization Parameter", ylab = "Sparsity Level", type = "l",xlim = rev(range(x$lambda)), main = "Sparsity vs. Regularization")
-	
+
 	lines(x$lambda[z.final],x$sparsity[z.final],type = "p")
-	
+
 	if(align){
 		layout.grid = layout.fruchterman.reingold(graph.adjacency(as.matrix(x$path[[z.final[length(z.final)]]]), mode="undirected", diag=FALSE))
 		for(i in z.final){

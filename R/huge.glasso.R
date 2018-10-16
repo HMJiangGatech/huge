@@ -1,10 +1,6 @@
 #-----------------------------------------------------------------------#
 # Package: High-dimensional Undirected Graph Estimation                 #
 # glasso(): The graphical lasso (glasso) using sparse matrix output     #
-# Authors: Tuo Zhao and Han Liu                                         #
-# Emails: <tzhao5@jhu.edu> and <hanliu@cs.jhu.edu>                      #
-# Date: July 15th 2011                                                  #
-# Version: 1.1.0                                                        #
 #-----------------------------------------------------------------------#
 
 ## Main function

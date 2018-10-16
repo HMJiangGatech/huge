@@ -1,10 +1,6 @@
 #-----------------------------------------------------------------------#
 # Package: High-dimensional Undirected Graph Estimation                 #
 # huge.generator(): Data generator                                      #
-# Authors: Tuo Zhao and Han Liu                                         #
-# Emails: <tzhao5@jhu.edu> and <hanliu@cs.jhu.edu>                      #
-# Date: July 15th 2011                                                  #
-# Version: 1.1.0                                                        #
 #-----------------------------------------------------------------------#
 
 #' Data generator
@@ -138,7 +134,7 @@ huge.generator = function(n = 200, d = 50, graph = "random", v = NULL, u = NULL,
   if(graph == "random"){
     if(is.null(u)) u = 0.1
     if(is.null(v)) v = 0.3
-  
+
     tmp = matrix(runif(d^2,0,0.5),d,d)
     tmp = tmp + t(tmp)
     theta[tmp < prob] = 1

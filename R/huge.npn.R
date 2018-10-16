@@ -1,10 +1,6 @@
 #-----------------------------------------------------------------------#
 # Package: High-dimensional Undirected Graph Estimation                 #
 # huge.npn(): nonparanormal(npn) transofmration                         #
-# Authors: Tuo Zhao and Han Liu                                         #
-# Emails: <tzhao@jhu.edu> and <hanliu@cs.jhu.edu>                       #
-# Date: Mar 20th 2012                                                   #
-# Version: 1.2.2                                                        #
 #-----------------------------------------------------------------------#
 
 #' Nonparanormal(npn) transformation

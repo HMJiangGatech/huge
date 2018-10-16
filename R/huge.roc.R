@@ -2,10 +2,6 @@
 # Package: High-dimensional Undirected pathraph Estimation              #
 # huge(): Draw ROC Curve for a solution path                            #
 #         The ground truth is required                                  #
-# Authors: Tuo Zhao and Han Liu                                         #
-# Emails: <tzhao5@jhu.edu> and <hanliu@cs.jhu.edu>                      #
-# Date: Jul 15th 2011                                                   #
-# Version: 1.1.0                                                        #
 #-----------------------------------------------------------------------#
 
 #' Draw ROC Curve for a graph path

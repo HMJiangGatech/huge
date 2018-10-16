@@ -4,10 +4,6 @@
 #                1.rotation information criterion (ric)                   #
 #                2.stability approach to regularization selection (stars) #
 #                3.extended Bayesian informaition criterion (ebic)        #
-# Authors: Tuo Zhao and Han Liu                                           #
-# Emails: <tzhao5@jhu.edu> and <hanliu@cs.jhu.edu>                        #
-# Date: Jan 21th 2012                                                     #
-# Version: 1.2.0                                                          #
 #-------------------------------------------------------------------------#
 
 #' Model selection for high-dimensional undirected graph estimation

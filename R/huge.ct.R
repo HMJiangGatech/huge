@@ -1,10 +1,6 @@
 #-----------------------------------------------------------------------#
 # Package: High-dimensional Undirected Graph Estimation                 #
 # huge.gect(): graph estimation via correlation thresholding (ct)       #
-# Authors: Tuo Zhao and Han Liu                                         #
-# Emails: <tzhao5@jhu.edu> and <hanliu@cs.jhu.edu>                      #
-# Date: Jul 15th 2011                                                   #
-# Version: 1.1.0                                                        #
 #-----------------------------------------------------------------------#
 
 ##Main function
