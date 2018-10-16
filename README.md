@@ -158,24 +158,3 @@ When using the Gaussian graphical model, huge controls the type I error well.
 [4] [Conﬁdence intervals for high-dimensional inverse covariance estimation](https://projecteuclid.org/download/pdfview_1/euclid.ejs/1433195859)  
 [5] D. Witten and J. Friedman, New insights and faster computations for the graphical lasso,2011  
 [6] N. Meinshausen and P. Buhlmann, High-dimensional Graphs and Variable Selection with the Lasso, 2006
-
-## GSOC TODO List
-
-### Code Refactoring and Benchmarking
-- [x] Use `roxygen2` to manage Documents.
-- [x] Benchmark the code.
-- [x] Use `RcppEigen` to accelerate the code.
-- [x] Refactor `huge.glasso`
-- [x] Use `OpenMP` to enable multi-processing.
-
-### Solver Upgrade
-- [x] Implement Active Set Newton solver.
-
-### Inference Module
-- [x] Add inference module
-
-### Polish and submit
-- [x] Polish `readme.md`
-- [x] Polish R Documents
-- [ ] Polish `vignette`
-- [ ] submit to CRAN
