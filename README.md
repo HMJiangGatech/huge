@@ -1,4 +1,7 @@
 <h1 align="center">Huge</h1>
+
+[![](https://cranlogs.r-pkg.org/badges/huge)](https://cran.r-project.org/package=huge)
+
 <h4 align="center">R Package for High-Dimensional Undirected Graph Estimation and Inference</h4>
 
 ___Huge___ (Huge-Dimensional Undirencted Graph Estimation) implements the algorithm of estimating the parameters of a Gaussian distribution in such a way that the resulting undirected graphical model is sparse. The core algorithm is implemented in C++ with RcppEigen support for portable high performance linear algebra. It also implements a unified framework to quantify local and global inferential uncertainty for high dimensional graphical models. In particular, we consider the problems of testing the presence of a single edge. Runtime profiling is documented in the [__Performance__](#performance) section.
