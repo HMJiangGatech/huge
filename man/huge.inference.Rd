@@ -21,12 +21,12 @@ huge.inference(data, T, adj, alpha = 0.05, type = "Gaussian",
 \item{method}{When using nonparanormal graphical model. Test method with 2 options: \code{"score"} and \code{"wald"}. The defaulty value is \code{"score"}.}
 }
 \value{
-An object is returned:  
+An object is returned:
 \item{data}{
   The \code{n} by \code{d} data matrix from the input.
 }
 \item{p}{
-  The \code{d} by \code{d} p-value matrix of hypothesis. 
+  The \code{d} by \code{d} p-value matrix of hypothesis.
 }
 \item{error}{
   The type I error of hypothesis at alpha significance level.

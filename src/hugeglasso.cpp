@@ -12,7 +12,7 @@ using namespace Eigen;
 void hugeglasso_sub(Eigen::MatrixXd &S, Eigen::MatrixXd &W, Eigen::MatrixXd &T, int d, double ilambda, int &df, bool scr);
 
 //[[Rcpp::export]]
-List hugeglasso(Eigen::MatrixXd &S, NumericVector lambda, bool scr, bool verbose, bool cov_output)
+List hugeglasso(Eigen::Map<Eigen::MatrixXd> S, NumericVector lambda, bool scr, bool verbose, bool cov_output)
 {
     unsigned int nlambda = lambda.size();
     int nfeatures = S.rows();

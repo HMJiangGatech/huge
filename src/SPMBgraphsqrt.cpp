@@ -14,7 +14,7 @@ using namespace Eigen;
 double thresholdl1(double x, double thr);
 
 //[[Rcpp::export]]
-List SPMBgraphsqrt(Eigen::MatrixXd &data, NumericVector &lambda, int nlambda, int d, NumericVector &x, IntegerVector &col_cnz, IntegerVector &row_idx)
+List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int nlambda, int d, NumericVector &x, IntegerVector &col_cnz, IntegerVector &row_idx)
 {
 
     Eigen::ArrayXd Xb, r, grad, w1, Y, XX, gr;

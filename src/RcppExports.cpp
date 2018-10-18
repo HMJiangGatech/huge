@@ -6,21 +6,6 @@
 
 using namespace Rcpp;
 
-// hugeglasso
-List hugeglasso(Eigen::MatrixXd& S, NumericVector lambda, bool scr, bool verbose, bool cov_output);
-RcppExport SEXP _huge_hugeglasso(SEXP SSEXP, SEXP lambdaSEXP, SEXP scrSEXP, SEXP verboseSEXP, SEXP cov_outputSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type S(SSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< bool >::type scr(scrSEXP);
-    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
-    Rcpp::traits::input_parameter< bool >::type cov_output(cov_outputSEXP);
-    rcpp_result_gen = Rcpp::wrap(hugeglasso(S, lambda, scr, verbose, cov_output));
-    return rcpp_result_gen;
-END_RCPP
-}
 // RIC
 double RIC(NumericMatrix& X, int d, int n, NumericVector& r, int t);
 RcppExport SEXP _huge_RIC(SEXP XSEXP, SEXP dSEXP, SEXP nSEXP, SEXP rSEXP, SEXP tSEXP) {
@@ -66,12 +51,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // SPMBgraphlasso
-List SPMBgraphlasso(Eigen::MatrixXd& data, NumericVector& lambda, int nlambda, int d, NumericVector& x, IntegerVector& col_cnz, IntegerVector& row_idx);
+List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector& lambda, int nlambda, int d, NumericVector& x, IntegerVector& col_cnz, IntegerVector& row_idx);
 RcppExport SEXP _huge_SPMBgraphlasso(SEXP dataSEXP, SEXP lambdaSEXP, SEXP nlambdaSEXP, SEXP dSEXP, SEXP xSEXP, SEXP col_cnzSEXP, SEXP row_idxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type data(dataSEXP);
+    Rcpp::traits::input_parameter< Eigen::Map<Eigen::MatrixXd> >::type data(dataSEXP);
     Rcpp::traits::input_parameter< NumericVector& >::type lambda(lambdaSEXP);
     Rcpp::traits::input_parameter< int >::type nlambda(nlambdaSEXP);
     Rcpp::traits::input_parameter< int >::type d(dSEXP);
@@ -83,12 +68,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // SPMBgraphsqrt
-List SPMBgraphsqrt(Eigen::MatrixXd& data, NumericVector& lambda, int nlambda, int d, NumericVector& x, IntegerVector& col_cnz, IntegerVector& row_idx);
+List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector& lambda, int nlambda, int d, NumericVector& x, IntegerVector& col_cnz, IntegerVector& row_idx);
 RcppExport SEXP _huge_SPMBgraphsqrt(SEXP dataSEXP, SEXP lambdaSEXP, SEXP nlambdaSEXP, SEXP dSEXP, SEXP xSEXP, SEXP col_cnzSEXP, SEXP row_idxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Eigen::MatrixXd& >::type data(dataSEXP);
+    Rcpp::traits::input_parameter< Eigen::Map<Eigen::MatrixXd> >::type data(dataSEXP);
     Rcpp::traits::input_parameter< NumericVector& >::type lambda(lambdaSEXP);
     Rcpp::traits::input_parameter< int >::type nlambda(nlambdaSEXP);
     Rcpp::traits::input_parameter< int >::type d(dSEXP);
@@ -118,15 +103,30 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// hugeglasso
+List hugeglasso(Eigen::Map<Eigen::MatrixXd> S, NumericVector lambda, bool scr, bool verbose, bool cov_output);
+RcppExport SEXP _huge_hugeglasso(SEXP SSEXP, SEXP lambdaSEXP, SEXP scrSEXP, SEXP verboseSEXP, SEXP cov_outputSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Eigen::Map<Eigen::MatrixXd> >::type S(SSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< bool >::type scr(scrSEXP);
+    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
+    Rcpp::traits::input_parameter< bool >::type cov_output(cov_outputSEXP);
+    rcpp_result_gen = Rcpp::wrap(hugeglasso(S, lambda, scr, verbose, cov_output));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_huge_hugeglasso", (DL_FUNC) &_huge_hugeglasso, 5},
     {"_huge_RIC", (DL_FUNC) &_huge_RIC, 5},
     {"_huge_SFGen", (DL_FUNC) &_huge_SFGen, 2},
     {"_huge_SPMBgraph", (DL_FUNC) &_huge_SPMBgraph, 7},
     {"_huge_SPMBgraphlasso", (DL_FUNC) &_huge_SPMBgraphlasso, 7},
     {"_huge_SPMBgraphsqrt", (DL_FUNC) &_huge_SPMBgraphsqrt, 7},
     {"_huge_SPMBscr", (DL_FUNC) &_huge_SPMBscr, 9},
+    {"_huge_hugeglasso", (DL_FUNC) &_huge_hugeglasso, 5},
     {NULL, NULL, 0}
 };
 

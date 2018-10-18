@@ -13,7 +13,7 @@ using namespace Eigen;
 double threshold(double x, double thr);
 
 //[[Rcpp::export]]
-List SPMBgraphlasso(Eigen::MatrixXd &data, NumericVector &lambda, int nlambda, int d, NumericVector &x, IntegerVector &col_cnz, IntegerVector &row_idx)
+List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int nlambda, int d, NumericVector &x, IntegerVector &col_cnz, IntegerVector &row_idx)
 {
     Eigen::ArrayXd r, grad, w1, Y, XX;
     Eigen::ArrayXXd X;
