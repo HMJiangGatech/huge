@@ -13,7 +13,7 @@ huge.ct = function(x, nlambda = NULL, lambda.min.ratio = NULL, lambda = NULL, ve
   fit$cov.input = isSymmetric(x);
   if(fit$cov.input)
   {
-    if(verbose) cat("The input is identified as the covriance matrix.\n")
+    if(verbose) cat("The input is identified as the covariance matrix.\n")
     S = cov2cor(x);
   }
   if(!fit$cov.input)
