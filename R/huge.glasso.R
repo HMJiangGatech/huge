@@ -12,7 +12,7 @@ huge.glasso = function(x, lambda = NULL, lambda.min.ratio = NULL, nlambda = NULL
   cov.input = isSymmetric(x)
   if(cov.input)
   {
-    if(verbose) cat("The input is identified as the covriance matrix.\n")
+    if(verbose) cat("The input is identified as the covariance matrix.\n")
     S = x
   }
   else
