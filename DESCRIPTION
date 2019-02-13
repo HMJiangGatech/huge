@@ -46,8 +46,4 @@ NeedsCompilation: yes
 Packaged: 2015-09-15 17:56:38 UTC; tuozhao
 Date/Publication: 2015-09-16 10:05:23
 RoxygenNote: 6.1.1
-Suggests:
-    knitr,
-    rmarkdown
-VignetteBuilder: knitr
 Encoding: UTF-8
