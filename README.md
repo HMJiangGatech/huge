@@ -55,7 +55,7 @@ print(inf$error) # print out type-I error
 ```
 
 ## Experiments
-For detailed implementation of the experiments, please refer to `tests/benchmark.R`
+For detailed implementation of the experiments, please refer to `benchmark/benchmark.R`
 
 ### Graph Estimation
 

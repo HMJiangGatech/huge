@@ -1,6 +1,14 @@
 #' @useDynLib huge, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 #' @importFrom Rcpp evalCpp
+#' @importFrom stats cov2cor cor runif qnorm sd pnorm
+#' @importFrom graphics par image plot lines
+#' @importFrom grDevices postscript gray.colors dev.off
+#' @importFrom Matrix Matrix
+#' @importFrom utils flush.console
+#' @importFrom MASS mvrnorm
+#' @importFrom igraph graph.adjacency layout.fruchterman.reingold
+#' @importFrom methods new
 NULL
 
 #' High-Dimensional Undirected Graph Estimation

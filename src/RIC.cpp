@@ -16,7 +16,7 @@ double RIC(NumericMatrix &X, int d, int n, NumericVector &r, int t)
     {
         tmp_r = r[i];
         lambda_max = 0;
-        for(j=0;j<d;j++)
+        for(j=0;j<d;j++) {
             for(k=0;k<j;k++)
             {
                 tmp = 0;
@@ -39,6 +39,7 @@ double RIC(NumericMatrix &X, int d, int n, NumericVector &r, int t)
                 if(tmp>lambda_max)
                     lambda_max = tmp;
             }
+        }
         if(lambda_max<lambda_min)
             lambda_min = lambda_max;
     }

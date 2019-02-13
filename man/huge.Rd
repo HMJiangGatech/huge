@@ -47,7 +47,7 @@ An object with S3 class \code{"huge"} is returned:
   The \code{sym} from the input. ONLY applicable when \code{method = "mb"} or \code{"tiger"}.
 }
 \item{scr}{
-  The \code{scr} from the input. ONLY applicable when \code{"glasso"}.
+  The \code{scr} from the input. ONLY applicable when \code{method = "mb"} or \code{"glasso"}.
 }
 \item{path}{
   A list of \code{k} by \code{k} adjacency matrices of estimated graphs as a graph path corresponding to \code{lambda}.

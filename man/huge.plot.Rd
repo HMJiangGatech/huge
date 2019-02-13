@@ -14,9 +14,9 @@ huge.plot(G, epsflag = FALSE, graph.name = "default", cur.num = 1,
 
 \item{graph.name}{The name of the output eps files. The default value is "default".}
 
-\item{location}{Target directory. The default value is the current working directory.}
+\item{cur.num}{The number of plots saved as eps files. Only applicale when \code{epsflag = TRUE}. The default value is 1.}
 
-\item{cur.name}{The number of plots saved as eps files. Only applicale when \code{epsflag = TRUE}. The default value is 1.}
+\item{location}{Target directory. The default value is the current working directory.}
 }
 \description{
 Implements the graph visualization using adjacency matrix. It can automatic organize 2D embedding layout.

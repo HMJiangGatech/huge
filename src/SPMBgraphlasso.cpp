@@ -13,7 +13,7 @@ using namespace Eigen;
 double threshold(double x, double thr);
 
 //[[Rcpp::export]]
-List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int nlambda, int d, NumericVector &x, IntegerVector &col_cnz, IntegerVector &row_idx)
+List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int nlambda, int d, NumericVector &x, IntegerVector &col_cnz, IntegerVector &row_idx, bool scr, IntegerMatrix &idx_scr, int nscr)
 {
     Eigen::ArrayXd r, grad, w1, Y, XX;
     Eigen::ArrayXXd X;
@@ -36,7 +36,7 @@ List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int
       r.resize(n);
       r.setZero();
       Y = X.col(m);
-      
+
       std::vector<int> actset_indcat(d, 0);
       std::vector<int> actset_indcat_aux(d, 0);
       std::vector<int> actset_idx;
@@ -60,23 +60,28 @@ List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int
       for(int i=0;i<nlambda;i++)
       {
         double ilambda = lambda[i];
-        for(int j = 0; j < m; j++)
-        {
-          if (actset_indcat[j] == 0)
+        if(scr)
+          for(int jj = 0; jj < nscr; jj++)
           {
-            temp = threshold(fabs(gr[j]), ilambda);
-            if (fabs(temp) > 1e-8) actset_indcat[j] = 1;
+            int j = idx_scr(m,jj);
+            if (j==m) continue;
+            if (actset_indcat[j] == 0)
+            {
+              temp = threshold(fabs(gr[j]), ilambda);
+              if (fabs(temp) > 1e-8) actset_indcat[j] = 1;
+            }
           }
-        }
-        for(int j = m+1; j < d; j++)
-        {
-          if (actset_indcat[j] == 0)
+        else
+          for(int j = 0; j < d; j++)
           {
-            temp = threshold(fabs(gr[j]), ilambda);
-            if (fabs(temp) > 1e-8) actset_indcat[j] = 1;
+            if (j==m) continue;
+            if (actset_indcat[j] == 0)
+            {
+              temp = threshold(fabs(gr[j]), ilambda);
+              if (fabs(temp) > 1e-8) actset_indcat[j] = 1;
+            }
           }
-        }
-        
+
         int loopcnt_level_0 = 0;
         flag2 = 1;
         while (loopcnt_level_0 < max_iter)
@@ -123,23 +128,23 @@ List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int
               if (local_change > dev_thr)
                 terminate_loop_level_1 = true;
             }
-            
+
             for (int j = m+1; j < d; j++)
             {
               if (actset_indcat[j] == 0) continue;
-              
+
               double w1_old = w1[j];
-              
+
               grad[j] = (r*X.col(j)).sum()/n;
-              
+
               //w1_old = w1[j];
               double tmp = grad[j] + w1[j] * XX[j];
               w1[j] = threshold(tmp, ilambda) / XX[j];
               r = r - X.col(j) * (w1[j] - w1_old);
               double updated_coord = w1[j];
-              
+
               if (updated_coord == w1_old) continue;
-              
+
               if (actset_indcat_aux[j] == 0)
               {
                 actset_idx.push_back(j);
@@ -150,7 +155,7 @@ List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int
               if (local_change > dev_thr)
                 terminate_loop_level_1 = true;
             }
-            
+
             if (terminate_loop_level_1)
             {
               new_active_idx = true;
@@ -169,7 +174,7 @@ List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int
                   new_active_idx = true;
                 }
               }
-              
+
               for (int j = m+1; j < d; j++)
                 if (actset_indcat[j] == 0)
                 {

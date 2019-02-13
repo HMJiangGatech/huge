@@ -12,7 +12,7 @@
 #' @param G The adjaceny matrix corresponding to the graph.
 #' @param epsflag If \code{epsflag = TRUE}, save the plot as an eps file in the target directory. The default value is \code{FALSE}.
 #' @param graph.name The name of the output eps files. The default value is "default".
-#' @param cur.name The number of plots saved as eps files. Only applicale when \code{epsflag = TRUE}. The default value is 1.
+#' @param cur.num The number of plots saved as eps files. Only applicale when \code{epsflag = TRUE}. The default value is 1.
 #' @param location Target directory. The default value is the current working directory.
 #' @seealso \code{\link{huge}} and \code{\link{huge-package}}.
 #' @examples
