@@ -59,7 +59,7 @@ For detailed implementation of the experiments, please refer to `tests/benchmark
 
 ### Graph Estimation
 
-We compared our package on hub graph with (n=200,d=200) with other packages, namely, grplasso, grpreg and gglasso.
+We compared our package on hub graph with (n=200,d=200) with other packages, namely, QUIC and clime.
 Huge significantly outperforms clime, QUIC and original huge in timing performance. We also calculated the likelihood for estimation.
 
 <center>
