@@ -37,7 +37,7 @@
 #'   The \code{sym} from the input. ONLY applicable when \code{method = "mb"} or \code{"tiger"}.
 #' }
 #' \item{scr}{
-#'   The \code{scr} from the input. ONLY applicable when \code{"glasso"}.
+#'   The \code{scr} from the input. ONLY applicable when \code{method = "mb"} or \code{"glasso"}.
 #' }
 #' \item{path}{
 #'   A list of \code{k} by \code{k} adjacency matrices of estimated graphs as a graph path corresponding to \code{lambda}.
@@ -114,7 +114,7 @@ huge = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, metho
 
 	if(method == "mb")
 	{
-		fit = huge.mb(x, lambda = lambda, nlambda = nlambda, lambda.min.ratio = lambda.min.ratio, sym = sym, verbose = verbose)
+		fit = huge.mb(x, lambda = lambda, nlambda = nlambda, lambda.min.ratio = lambda.min.ratio, scr = scr, scr.num = scr.num, sym = sym, verbose = verbose)
 		est$path = fit$path
 		est$lambda = fit$lambda
 		est$sparsity = fit$sparsity

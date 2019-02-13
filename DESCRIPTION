@@ -1,12 +1,15 @@
 Package: huge
 Type: Package
 Title: High-Dimensional Undirected Graph Estimation
-Version: 1.2.7
+Version: 1.3.0
 Author: Haoming Jiang, Xingguo Li, Xinyu Fei, Han Liu, Kathryn Roeder, John Lafferty, Larry
         Wasserman, Tuo Zhao
 Maintainer: Haoming Jiang <hjiang98@gatech.edu>
-Depends: R (>= 3.0.0), Matrix, lattice, igraph, MASS
+Depends: R (>= 3.0.0)
 Imports:
+    Matrix, 
+    igraph, 
+    MASS,
     grDevices,
     graphics,
     methods,
@@ -42,7 +45,7 @@ Repository: CRAN
 NeedsCompilation: yes
 Packaged: 2015-09-15 17:56:38 UTC; tuozhao
 Date/Publication: 2015-09-16 10:05:23
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests:
     knitr,
     rmarkdown
