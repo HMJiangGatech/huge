@@ -5,8 +5,17 @@
 
 ## R CMD check results
 
-I got one NOTE when checking under ubuntu environment:
+One WARNING under ubuntu environment:
 ```
+* checking compilation flags used ... WARNING
+  Compilation used the following non-portable flag(s):
+    ‘-Wdate-time’ ‘-Werror=format-security’ ‘-Wformat’
+```
+This warning only appears under ubuntu environment.
+
+One NOTE under ubuntu environment:
+```
+
 * checking installed package size ... NOTE
   installed size is 10.9Mb
   sub-directories of 1Mb or more:
