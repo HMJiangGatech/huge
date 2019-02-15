@@ -121,15 +121,15 @@ huge.generator = function(n = 200, d = 50, graph = "random", v = NULL, u = NULL,
     }
   }
   if(graph == "hub"){
-  if(is.null(u)) u = 0.1
-  if(is.null(v)) v = 0.3
-  for(i in 1:g){
-     tmp = which(g.ind==i)
-     theta[tmp[1],tmp] = 1
-     theta[tmp,tmp[1]] = 1
-     rm(tmp)
-     gc()
-  }
+    if(is.null(u)) u = 0.1
+    if(is.null(v)) v = 0.3
+    for(i in 1:g){
+       tmp = which(g.ind==i)
+       theta[tmp[1],tmp] = 1
+       theta[tmp,tmp[1]] = 1
+       rm(tmp)
+       gc()
+    }
   }
   if(graph == "random"){
     if(is.null(u)) u = 0.1

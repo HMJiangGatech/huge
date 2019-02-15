@@ -1,3 +1,6 @@
+#revdep
+revdep/*
+
 # old package
 /_old_package/*
 

@@ -11,7 +11,7 @@ One WARNING under ubuntu environment:
   Compilation used the following non-portable flag(s):
     ‘-Wdate-time’ ‘-Werror=format-security’ ‘-Wformat’
 ```
-This warning only appears under ubuntu environment.
+This warning only appears under ubuntu environment. This is because the default compiler flag setting is specical on the system. Problem solved by https://stackoverflow.com/questions/50658198/cran-submission-r-cmd-check-warning-compilation-flags-used.
 
 One NOTE under ubuntu environment:
 ```
@@ -21,8 +21,13 @@ One NOTE under ubuntu environment:
   sub-directories of 1Mb or more:
     libs   9.2Mb
 ```
-It seems that on LINUX architectures, the CHECK returns one NOTE because the libs subdirectory is then above the 1MB threshold. However, it seems that this NOTE only appears under LINUX, but not under Windows or OSX.
-My understanding is that this inflation of the libs subdirectory is due to the use of Rcpp. Indeed, some functions of the package have been written in C++ using Rcpp. They are needed to perform [what the package do]. Without the speed up gained from those C++ functions, this package would become impractical.
+It seems that on LINUX architectures, the CHECK returns one NOTE because the libs subdirectory is then above the 1MB threshold. However, it seems that this NOTE only appears under LINUX, but not under Windows or OSX. My understanding is that this inflation of the libs subdirectory is due to the use of Rcpp.
 
 
 ## Downstream dependencies
+I have also run R CMD check on downstream dependencies of huge.
+All packages that I could install passed, except for `netgwas`:
+  One check is failed: testthat/test_buildMap.R
+  I manually verified the difference between the output of the old huge and the new huge. The only difference is the ordering of the result.
+  There is only one call of our `huge` function. I also check the output of that step. I only discovered subtle numerical difference. The relative error is about $10^{-10}$.
+  
