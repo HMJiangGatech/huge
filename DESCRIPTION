@@ -4,7 +4,7 @@ Title: High-Dimensional Undirected Graph Estimation
 Version: 1.3.0
 Author: Haoming Jiang, Xingguo Li, Xinyu Fei, Han Liu, Kathryn Roeder, John Lafferty, Larry
         Wasserman, Tuo Zhao
-Maintainer: Haoming Jiang <hjiang98@gatech.edu>
+Maintainer: Haoming Jiang <jianghm.ustc@gmail.com>
 Depends: R (>= 3.0.0)
 Imports:
     Matrix, 
