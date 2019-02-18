@@ -42,7 +42,5 @@ Description: Provides a general framework for
 License: GPL-2
 Repository: CRAN
 NeedsCompilation: yes
-Packaged: 2015-09-15 17:56:38 UTC; tuozhao
-Date/Publication: 2015-09-16 10:05:23
-RoxygenNote: 6.1.1
+RoxygenNote: 6.1.0
 Encoding: UTF-8

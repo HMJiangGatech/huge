@@ -1,9 +1,11 @@
+^CRAN-RELEASE$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 cran-comments.md
 benchmark/*
 revdep/*
 README.md
+configure.ac
 \.o$
 \.so$
 \.dll$
