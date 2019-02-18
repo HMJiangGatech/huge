@@ -3,3 +3,7 @@
 cran-comments.md
 benchmark/*
 revdep/*
+README.md
+\.o$
+\.so$
+\.dll$
