@@ -8,6 +8,34 @@ ___Huge___ (Huge-Dimensional Undirencted Graph Estimation) implements the algori
 
 
 ## Installation
+
+### Prerequisites
+
+Huge uses OpenMP to enables faster matrix multiplication. So, to use huge, you must correctly enables OpenMP for the compiler.
+
+For Windows and Linux users, newest version of GCC has fully support of OpenMP.
+
+But for MAC OS users, things are a little tricky since the default llvm on MAC OS does not support OpenMP. But the solution is easy. You can simply install llvm with full OpenMP support and direct R using this version of llvm.
+
+First, install llvm with OpenMP support by typing
+
+```
+brew install llvm
+```
+
+Then append the following lines into `~/.R/Makevars` to enable llvm with OpenMP support to be the compiler for R packages.
+
+```
+CC = /usr/local/bin/clang-omp
+CXX = /usr/local/bin/clang-omp++
+CXX98 = /usr/local/bin/clang-omp++
+CXX11 = /usr/local/bin/clang-omp++
+CXX14 = /usr/local/bin/clang-omp++
+CXX17 = /usr/local/bin/clang-omp++
+OBJC = /usr/local/bin/clang-omp
+OBJCXX = /usr/local/bin/clang-omp++
+```
+
 ### Installing from GitHub
 
 First, you need to install the devtools package. You can do this from CRAN. Invoke R and then type
@@ -16,7 +44,7 @@ First, you need to install the devtools package. You can do this from CRAN. Invo
 install.packages(devtools)
 ```
 
-Then load the devtools package and install SAM
+Then load the devtools package and install huge
 
 ```
 library(devtools)
@@ -31,7 +59,7 @@ assignInNamespace("version_info", c(devtools:::version_info, list("3.5" = list(v
 
 ### Install from CRAN (not up to date yet)
 
-Ideally you can just install and enable SAM using with the help of CRAN on an R console, but we haven't uploaded the package to CRAN yet, so this method is not available so far.
+Ideally you can just install and enable huge using with the help of CRAN on an R console, but we haven't uploaded the package to CRAN yet, so this method is not available so far.
 
 ```
 install.packages("huge")
