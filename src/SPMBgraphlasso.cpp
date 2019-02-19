@@ -1,6 +1,5 @@
 #include "math.h"
 #include <RcppEigen.h>
-#include <omp.h>
 #include <Rcpp.h>
 #include <RcppEigen.h>
 using namespace Rcpp;
