@@ -1,5 +1,5 @@
 ## Test environments
-* Mac OS X install, R 3.5.2
+* Mac OS X, R 3.5.2
 * ubuntu 16.04, R 3.5.2
 * windows 10, R 3.5.2
 
@@ -17,9 +17,5 @@ It seems that on LINUX architectures, the CHECK returns one NOTE because the lib
 
 
 ## Downstream dependencies
-I have also run R CMD check on downstream dependencies of huge.
-All packages that I could install passed, except for `netgwas`:
-  One check is failed: testthat/test_buildMap.R
-  I manually verified the difference between the output of the old huge and the new huge. The only difference is the ordering of the result.
-  There is only one call of our `huge` function. I also check the output of that step. I only discovered subtle numerical difference. The relative error is about $10^{-10}$.
-  
+I have also run R CMD check on downstream dependencies of huge by https://github.com/r-lib/revdepcheck/.
+All 21 packages produce the same checking results by using both the old huge and the new huge.
