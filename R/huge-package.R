@@ -69,7 +69,7 @@ NULL
 #'   The 1st column: the query symbol for each company.
 #'   The 2nd column: the category for each company.
 #'   The 3rd column: the full name of each company.
-#' @source It is publicly available at \url{http://ichart.finance.yahoo.com}
+#' @source It was publicly available at http://ichart.finance.yahoo.com, which is now out of date
 #' @examples
 #' data(stockdata)
 #' image(stockdata$data)
