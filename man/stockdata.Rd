@@ -11,7 +11,7 @@
   The 2nd column: the category for each company.
   The 3rd column: the full name of each company.}
 \source{
-It is publicly available at \url{http://ichart.finance.yahoo.com}
+It was publicly available at finance.yahoo, which is now out of date
 }
 \usage{
 data(stockdata)
