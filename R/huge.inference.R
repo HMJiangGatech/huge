@@ -15,8 +15,8 @@
 #' @param T The estimated inverse of correlation matrix of the data.
 #' @param adj The adjacency matrix corresponding to the graph.
 #' @param alpha The significance level of hypothesis.The default value is \code{0.05}.
-#' @param type The type of input data. There are 2 options: \code{"Gaussian"} and \code{"Nonparanormal"}. The defaulty value is \code{"Gaussian"}.
-#' @param method When using nonparanormal graphical model. Test method with 2 options: \code{"score"} and \code{"wald"}. The defaulty value is \code{"score"}.
+#' @param type The type of input data. There are 2 options: \code{"Gaussian"} and \code{"Nonparanormal"}. The default value is \code{"Gaussian"}.
+#' @param method When using nonparanormal graphical model. Test method with 2 options: \code{"score"} and \code{"wald"}. The default value is \code{"score"}.
 #' @seealso \code{\link{huge}}, and \code{\link{huge-package}}.
 #' @return
 #' An object is returned:

@@ -32,7 +32,7 @@ An object with S3 class "roc" is returned:
 Draws ROC curve for a graph path according to the true graph structure.
 }
 \details{
-To avoid the horizontal oscillation, false positive rates is automaically sorted in the ascent oder and true positive rates also follow the same order.
+To avoid the horizontal oscillation, false positive rates is automatically sorted in the ascent order and true positive rates also follow the same order.
 }
 \note{
 For a lasso regression,  the number of nonzero coefficients is at most \code{n-1}. If \code{d>>n}, even when regularization parameter is very small, the estimated graph may still be sparse. In this case, the AUC may not be a good choice to evaluate the performance.

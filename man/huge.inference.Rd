@@ -16,9 +16,9 @@ huge.inference(data, T, adj, alpha = 0.05, type = "Gaussian",
 
 \item{alpha}{The significance level of hypothesis.The default value is \code{0.05}.}
 
-\item{type}{The type of input data. There are 2 options: \code{"Gaussian"} and \code{"Nonparanormal"}. The defaulty value is \code{"Gaussian"}.}
+\item{type}{The type of input data. There are 2 options: \code{"Gaussian"} and \code{"Nonparanormal"}. The default value is \code{"Gaussian"}.}
 
-\item{method}{When using nonparanormal graphical model. Test method with 2 options: \code{"score"} and \code{"wald"}. The defaulty value is \code{"score"}.}
+\item{method}{When using nonparanormal graphical model. Test method with 2 options: \code{"score"} and \code{"wald"}. The default value is \code{"score"}.}
 }
 \value{
 An object is returned:

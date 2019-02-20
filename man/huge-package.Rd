@@ -24,7 +24,7 @@ The package "huge" provides 8 main functions:\cr
 (4) The Meinshausen-Buhlmann graph estimation. Please refer to \code{\link{huge}}.\cr
 (5) The graphical Lasso algorithm using lossless screening rule. Please refer and \code{\link{huge}}.\cr
 \cr
-**Both (4) and (5) can be furether accelerated by the lossy screening rule preselecting the neighborhood of each node via thresholding sample correlation.
+**Both (4) and (5) can be further accelerated by the lossy screening rule preselecting the neighborhood of each node via thresholding sample correlation.
 \cr
 (6) The model selection using the stability approach to regularization selection. Please refer to \code{\link{huge.select}}.\cr
 (7) The model selection using the rotation information criterion. Please refer to \code{\link{huge.select}}.\cr

@@ -30,7 +30,7 @@ NULL
 #' (4) The Meinshausen-Buhlmann graph estimation. Please refer to \code{\link{huge}}.\cr
 #' (5) The graphical Lasso algorithm using lossless screening rule. Please refer and \code{\link{huge}}.\cr
 #' \cr
-#' **Both (4) and (5) can be furether accelerated by the lossy screening rule preselecting the neighborhood of each node via thresholding sample correlation.
+#' **Both (4) and (5) can be further accelerated by the lossy screening rule preselecting the neighborhood of each node via thresholding sample correlation.
 #' \cr
 #' (6) The model selection using the stability approach to regularization selection. Please refer to \code{\link{huge.select}}.\cr
 #' (7) The model selection using the rotation information criterion. Please refer to \code{\link{huge.select}}.\cr
@@ -63,11 +63,11 @@ NULL
 #'
 #' @usage data(stockdata)
 #' @format
-#' The format is a list containing conatins two matrices.
+#' The format is a list containing contains two matrices.
 #' 1. data - 1258x452, represents the 452 stocks' close prices for 1258 trading days.
 #'   2. info - 452x3:
 #'   The 1st column: the query symbol for each company.
-#'   The 2nd column: the categoriy for each company.
+#'   The 2nd column: the category for each company.
 #'   The 3rd column: the full name of each company.
 #' @source It is publicly available at \url{http://ichart.finance.yahoo.com}
 #' @examples

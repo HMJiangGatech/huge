@@ -8,7 +8,7 @@
 #'
 #' Draws ROC curve for a graph path according to the true graph structure.
 #'
-#' To avoid the horizontal oscillation, false positive rates is automaically sorted in the ascent oder and true positive rates also follow the same order.
+#' To avoid the horizontal oscillation, false positive rates is automatically sorted in the ascent order and true positive rates also follow the same order.
 #'
 #' @param path A graph path.
 #' @param theta The true graph structure.

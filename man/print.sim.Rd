@@ -12,7 +12,7 @@
 \item{\dots}{System reserved (No specific usage)}
 }
 \description{
-Print the information about the sample size, the dimension, the pattern and sparsity of the true graph strcture.
+Print the information about the sample size, the dimension, the pattern and sparsity of the true graph structure.
 }
 \seealso{
 \code{\link{huge.generator}}

@@ -25,7 +25,7 @@ A \code{d} by \code{d} nonparanormal correlation matrix if \code{npn.func = "ske
 Implements the Gausianization to help relax the assumption of normality.
 }
 \details{
-The nonparanormal extends Gaussian graphical models to semiparametric Gaussian copula models.Motivated by sparse additive models, the nonparanormal method estimates the Gasussian copula by marginally transforming the variables using smooth functions.Computationally, the estimation of a nonparanormal transformation is very efficient and only requires one pass of the data matrix.
+The nonparanormal extends Gaussian graphical models to semiparametric Gaussian copula models.Motivated by sparse additive models, the nonparanormal method estimates the Gaussian copula by marginally transforming the variables using smooth functions.Computationally, the estimation of a nonparanormal transformation is very efficient and only requires one pass of the data matrix.
 }
 \examples{
 # generate nonparanormal data

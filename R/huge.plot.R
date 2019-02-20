@@ -9,7 +9,7 @@
 #'
 #' The user can change \code{cur.num} to plot several figures and select the best one. The implementation is based on the popular package "igraph".
 #'
-#' @param G The adjaceny matrix corresponding to the graph.
+#' @param G The adjacency matrix corresponding to the graph.
 #' @param epsflag If \code{epsflag = TRUE}, save the plot as an eps file in the target directory. The default value is \code{FALSE}.
 #' @param graph.name The name of the output eps files. The default value is "default".
 #' @param cur.num The number of plots saved as eps files. Only applicale when \code{epsflag = TRUE}. The default value is 1.

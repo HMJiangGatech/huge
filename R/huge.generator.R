@@ -187,7 +187,7 @@ huge.generator = function(n = 200, d = 50, graph = "random", v = NULL, u = NULL,
 
 #' Print function for S3 class "sim"
 #'
-#' Print the information about the sample size, the dimension, the pattern and sparsity of the true graph strcture.
+#' Print the information about the sample size, the dimension, the pattern and sparsity of the true graph structure.
 #'
 #' @param x An object with S3 class \code{"sim"}.
 #' @param \dots System reserved (No specific usage)

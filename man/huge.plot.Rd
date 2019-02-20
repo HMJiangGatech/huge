@@ -8,7 +8,7 @@ huge.plot(G, epsflag = FALSE, graph.name = "default", cur.num = 1,
   location = NULL)
 }
 \arguments{
-\item{G}{The adjaceny matrix corresponding to the graph.}
+\item{G}{The adjacency matrix corresponding to the graph.}
 
 \item{epsflag}{If \code{epsflag = TRUE}, save the plot as an eps file in the target directory. The default value is \code{FALSE}.}
 

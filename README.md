@@ -4,7 +4,7 @@
 
 <h4 align="center">R Package for High-Dimensional Undirected Graph Estimation and Inference</h4>
 
-___Huge___ (Huge-Dimensional Undirencted Graph Estimation) implements the algorithm of estimating the parameters of a Gaussian distribution in such a way that the resulting undirected graphical model is sparse. The core algorithm is implemented in C++ with RcppEigen support for portable high performance linear algebra. It also implements a unified framework to quantify local and global inferential uncertainty for high dimensional graphical models. In particular, we consider the problems of testing the presence of a single edge. Runtime profiling is documented in the [__Performance__](#performance) section.
+___Huge___ (Huge-Dimensional Undirected Graph Estimation) implements the algorithm of estimating the parameters of a Gaussian distribution in such a way that the resulting undirected graphical model is sparse. The core algorithm is implemented in C++ with RcppEigen support for portable high performance linear algebra. It also implements a unified framework to quantify local and global inferential uncertainty for high dimensional graphical models. In particular, we consider the problems of testing the presence of a single edge. Runtime profiling is documented in the [__Performance__](#performance) section.
 
 
 ## Installation
@@ -52,7 +52,7 @@ install_github("HMJiangGatech/huge")
 library(huge)
 ```
 
-*Windows User:*  If you enconter a Rtools version issue: 1. make sure you install the latest [Rtools](https://cran.r-project.org/bin/windows/Rtools/); 2. try the following code
+*Windows User:*  If you encounter a Rtools version issue: 1. make sure you install the latest [Rtools](https://cran.r-project.org/bin/windows/Rtools/); 2. try the following code
 ```R
 assignInNamespace("version_info", c(devtools:::version_info, list("3.5" = list(version_min = "3.3.0", version_max = "99.99.99", path = "bin"))), "devtools")
 ```
@@ -184,7 +184,7 @@ When using the Gaussian graphical model, huge controls the type I error well.
 
 ## References
 [1] [T. Zhao and H. Liu, The huge Package for High-dimensional Undirected Graph Estimation in R, 2012](https://cran.r-project.org/web/packages/huge/vignettes/vignette.pdf)  
-[2] [Xingguo Li, Jason Ge, Haoming Jiang, Mingyi Hong, Mengdi Wang, and Tuo Zhao, Boosting Pathwise Coordiante Optimization: Sequential Screening and Proximal Subsampled Newton Subroutine, 2016](https://www2.isye.gatech.edu/~tzhao80/)  
+[2] [Xingguo Li, Jason Ge, Haoming Jiang, Mingyi Hong, Mengdi Wang, and Tuo Zhao, Boosting Pathwise Coordinate Optimization: Sequential Screening and Proximal Subsampled Newton Subroutine, 2016](https://www2.isye.gatech.edu/~tzhao80/)  
 [3] [Quanquan Gu, Yuan Cao, et al. Local and Global Inference for High Dimensional Nonparanormal Graphical Models](https://arxiv.org/abs/1502.02347)  
 [4] [Conﬁdence intervals for high-dimensional inverse covariance estimation](https://projecteuclid.org/download/pdfview_1/euclid.ejs/1433195859)  
 [5] D. Witten and J. Friedman, New insights and faster computations for the graphical lasso,2011  
