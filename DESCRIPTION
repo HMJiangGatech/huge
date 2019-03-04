@@ -1,7 +1,7 @@
 Package: huge
 Type: Package
 Title: High-Dimensional Undirected Graph Estimation
-Version: 1.3.0
+Version: 1.3.1
 Author: Haoming Jiang, Xinyu Fei, Yukun Ma, Xingguo Li, Han Liu, Kathryn Roeder, John Lafferty, Larry
         Wasserman, Tuo Zhao
 Maintainer: Haoming Jiang <jianghm.ustc@gmail.com>
