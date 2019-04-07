@@ -80,7 +80,7 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
       idx.mat = apply(-abs(S),2,order)[2:(scr.num+1),] - 1
 
     fit$idx.mat = idx.mat
-    out = .Call("_huge_SPMBgraphlasso", x, lambda, nlambda, d, as.double(rep(0,d*maxdf*nlambda)),as.integer(rep(0,d+1)), as.integer(rep(0,d*maxdf*nlambda)), scr, idx.mat, scr.num)
+    out = .Call("_huge_SPMBgraphlasso", x, lambda, nlambda, d, scr, idx.mat, scr.num)
   }
   if(!scr)
   {
@@ -90,7 +90,7 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
       flush.console()
     }
     fit$idx_mat = NULL
-    out = .Call("_huge_SPMBgraphlasso", x, lambda, nlambda, d, as.double(rep(0,d*maxdf*nlambda)),as.integer(rep(0,d+1)), as.integer(rep(0,d*maxdf*nlambda)), scr, as.matrix(0), 0)
+    out = .Call("_huge_SPMBgraphlasso", x, lambda, nlambda, d, scr, as.matrix(0), 0)
   }
   for(i in 1:d)
   {

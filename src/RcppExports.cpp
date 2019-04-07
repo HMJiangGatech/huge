@@ -34,39 +34,33 @@ BEGIN_RCPP
 END_RCPP
 }
 // SPMBgraphlasso
-List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector& lambda, int nlambda, int d, NumericVector& x, IntegerVector& col_cnz, IntegerVector& row_idx, bool scr, IntegerMatrix& idx_scr, int nscr);
-RcppExport SEXP _huge_SPMBgraphlasso(SEXP dataSEXP, SEXP lambdaSEXP, SEXP nlambdaSEXP, SEXP dSEXP, SEXP xSEXP, SEXP col_cnzSEXP, SEXP row_idxSEXP, SEXP scrSEXP, SEXP idx_scrSEXP, SEXP nscrSEXP) {
+List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector lambda, int nlambda, int d, bool scr, IntegerMatrix idx_scr, int nscr);
+RcppExport SEXP _huge_SPMBgraphlasso(SEXP dataSEXP, SEXP lambdaSEXP, SEXP nlambdaSEXP, SEXP dSEXP, SEXP scrSEXP, SEXP idx_scrSEXP, SEXP nscrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Eigen::Map<Eigen::MatrixXd> >::type data(dataSEXP);
-    Rcpp::traits::input_parameter< NumericVector& >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type lambda(lambdaSEXP);
     Rcpp::traits::input_parameter< int >::type nlambda(nlambdaSEXP);
     Rcpp::traits::input_parameter< int >::type d(dSEXP);
-    Rcpp::traits::input_parameter< NumericVector& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< IntegerVector& >::type col_cnz(col_cnzSEXP);
-    Rcpp::traits::input_parameter< IntegerVector& >::type row_idx(row_idxSEXP);
     Rcpp::traits::input_parameter< bool >::type scr(scrSEXP);
-    Rcpp::traits::input_parameter< IntegerMatrix& >::type idx_scr(idx_scrSEXP);
+    Rcpp::traits::input_parameter< IntegerMatrix >::type idx_scr(idx_scrSEXP);
     Rcpp::traits::input_parameter< int >::type nscr(nscrSEXP);
-    rcpp_result_gen = Rcpp::wrap(SPMBgraphlasso(data, lambda, nlambda, d, x, col_cnz, row_idx, scr, idx_scr, nscr));
+    rcpp_result_gen = Rcpp::wrap(SPMBgraphlasso(data, lambda, nlambda, d, scr, idx_scr, nscr));
     return rcpp_result_gen;
 END_RCPP
 }
 // SPMBgraphsqrt
-List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector& lambda, int nlambda, int d, NumericVector& x, IntegerVector& col_cnz, IntegerVector& row_idx);
-RcppExport SEXP _huge_SPMBgraphsqrt(SEXP dataSEXP, SEXP lambdaSEXP, SEXP nlambdaSEXP, SEXP dSEXP, SEXP xSEXP, SEXP col_cnzSEXP, SEXP row_idxSEXP) {
+List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector lambda, int nlambda, int d);
+RcppExport SEXP _huge_SPMBgraphsqrt(SEXP dataSEXP, SEXP lambdaSEXP, SEXP nlambdaSEXP, SEXP dSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Eigen::Map<Eigen::MatrixXd> >::type data(dataSEXP);
-    Rcpp::traits::input_parameter< NumericVector& >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type lambda(lambdaSEXP);
     Rcpp::traits::input_parameter< int >::type nlambda(nlambdaSEXP);
     Rcpp::traits::input_parameter< int >::type d(dSEXP);
-    Rcpp::traits::input_parameter< NumericVector& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< IntegerVector& >::type col_cnz(col_cnzSEXP);
-    Rcpp::traits::input_parameter< IntegerVector& >::type row_idx(row_idxSEXP);
-    rcpp_result_gen = Rcpp::wrap(SPMBgraphsqrt(data, lambda, nlambda, d, x, col_cnz, row_idx));
+    rcpp_result_gen = Rcpp::wrap(SPMBgraphsqrt(data, lambda, nlambda, d));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -89,8 +83,8 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_huge_RIC", (DL_FUNC) &_huge_RIC, 5},
     {"_huge_SFGen", (DL_FUNC) &_huge_SFGen, 2},
-    {"_huge_SPMBgraphlasso", (DL_FUNC) &_huge_SPMBgraphlasso, 10},
-    {"_huge_SPMBgraphsqrt", (DL_FUNC) &_huge_SPMBgraphsqrt, 7},
+    {"_huge_SPMBgraphlasso", (DL_FUNC) &_huge_SPMBgraphlasso, 7},
+    {"_huge_SPMBgraphsqrt", (DL_FUNC) &_huge_SPMBgraphsqrt, 4},
     {"_huge_hugeglasso", (DL_FUNC) &_huge_hugeglasso, 5},
     {NULL, NULL, 0}
 };

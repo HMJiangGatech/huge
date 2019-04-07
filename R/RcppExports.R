@@ -9,12 +9,12 @@ SFGen <- function(d0, d) {
     .Call(`_huge_SFGen`, d0, d)
 }
 
-SPMBgraphlasso <- function(data, lambda, nlambda, d, x, col_cnz, row_idx, scr, idx_scr, nscr) {
-    .Call(`_huge_SPMBgraphlasso`, data, lambda, nlambda, d, x, col_cnz, row_idx, scr, idx_scr, nscr)
+SPMBgraphlasso <- function(data, lambda, nlambda, d, scr, idx_scr, nscr) {
+    .Call(`_huge_SPMBgraphlasso`, data, lambda, nlambda, d, scr, idx_scr, nscr)
 }
 
-SPMBgraphsqrt <- function(data, lambda, nlambda, d, x, col_cnz, row_idx) {
-    .Call(`_huge_SPMBgraphsqrt`, data, lambda, nlambda, d, x, col_cnz, row_idx)
+SPMBgraphsqrt <- function(data, lambda, nlambda, d) {
+    .Call(`_huge_SPMBgraphsqrt`, data, lambda, nlambda, d)
 }
 
 hugeglasso <- function(S, lambda, scr, verbose, cov_output) {

@@ -12,20 +12,26 @@ using namespace Eigen;
 double threshold(double x, double thr);
 
 //[[Rcpp::export]]
-List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int nlambda, int d, NumericVector &x, IntegerVector &col_cnz, IntegerVector &row_idx, bool scr, IntegerMatrix &idx_scr, int nscr)
+List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector lambda, int nlambda, int d, bool scr, IntegerMatrix idx_scr, int nscr)
 {
     Eigen::ArrayXd r, grad, w1, Y, XX;
     Eigen::ArrayXXd X;
     int n = data.rows();
+    int maxdf = 0;
+    maxdf = (n < d ? n : d)*d;
+
+    NumericVector x(d*maxdf*nlambda);
+    IntegerVector col_cnz(d+1);
+    IntegerVector row_idx(d*maxdf*nlambda);
+
+
     X = data;
     XX.resize(d);
     for (int j = 0; j < d; j++)
       XX[j] = (X.col(j)*X.col(j)).sum()/n;
     double prec = 1e-4;
     int max_iter = 1000;
-    int num_relaxation_round = 3;
-	  int cnz = 0;
-    double a = 0, g = 0, tmp_change = 0, local_change = 0;
+    int cnz = 0;
     for(int m=0;m<d;m++)
     {
       grad.resize(d);
@@ -201,7 +207,7 @@ List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int
             loopcnt_level_1 += 1;
 
             bool terminate_loop_level_1 = true;
-            for (int j = 0; j < actset_idx.size(); j++) {
+            for (unsigned int j = 0; j < actset_idx.size(); j++) {
               int idx = actset_idx[j];
               double w1_old = w1[idx];
 
@@ -233,7 +239,7 @@ List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int
 
         }
 
-        for(int j=0;j<actset_idx.size();j++)
+        for(unsigned int j=0;j<actset_idx.size();j++)
         {
           int w_idx = actset_idx[j];
           x[cnz] = w1[w_idx];
@@ -243,12 +249,11 @@ List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int
       }
       col_cnz[m+1]=cnz;
     }
-
-	  return List::create(
-	    _["col_cnz"] = col_cnz,
-	    _["row_idx"] = row_idx,
-	    _["x"] = x
-	  );
+    return List::create(
+      _["col_cnz"] = col_cnz,
+      _["row_idx"] = row_idx,
+      _["x"] = x
+    );
 }
 
 
