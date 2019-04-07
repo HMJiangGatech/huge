@@ -57,9 +57,9 @@ library(huge)
 assignInNamespace("version_info", c(devtools:::version_info, list("3.5" = list(version_min = "3.3.0", version_max = "99.99.99", path = "bin"))), "devtools")
 ```
 
-### Install from CRAN (not up to date yet)
+### Install from CRAN
 
-Ideally you can just install and enable huge using with the help of CRAN on an R console, but we haven't uploaded the package to CRAN yet, so this method is not available so far.
+Ideally you can just install and enable huge using with the help of CRAN on an R console.
 
 ```
 install.packages("huge")
