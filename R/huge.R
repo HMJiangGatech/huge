@@ -116,6 +116,7 @@ huge = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, metho
 	{
 		fit = huge.mb(x, lambda = lambda, nlambda = nlambda, lambda.min.ratio = lambda.min.ratio, scr = scr, scr.num = scr.num, sym = sym, verbose = verbose)
 		est$path = fit$path
+		est$beta = fit$beta
 		est$lambda = fit$lambda
 		est$sparsity = fit$sparsity
 		est$df = fit$df
