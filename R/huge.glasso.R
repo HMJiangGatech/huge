@@ -3,7 +3,10 @@
 # glasso(): The graphical lasso (glasso) using sparse matrix output     #
 #-----------------------------------------------------------------------#
 
-## Main function
+#' The graphical lasso (glasso) using sparse matrix output 
+#' 
+#' See more details in \code{\link{huge}}
+#' @seealso \code{\link{huge}}, and \code{\link{huge-package}}.
 #' @export
 huge.glasso = function(x, lambda = NULL, lambda.min.ratio = NULL, nlambda = NULL, scr = NULL, cov.output = FALSE, verbose = TRUE){
 

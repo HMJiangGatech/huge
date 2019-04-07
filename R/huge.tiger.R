@@ -3,7 +3,10 @@
 # huge.tiger(): Tuning-insensitive graph estimation                     #
 #-----------------------------------------------------------------------#
 
-## Main function
+#' Tuning-insensitive graph estimation
+#' 
+#' See more details in \code{\link{huge}}
+#' @seealso \code{\link{huge}}, and \code{\link{huge-package}}.
 #' @export
 huge.tiger = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sym = "or", verbose = TRUE)
 {

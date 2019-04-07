@@ -3,7 +3,10 @@
 # huge.gect(): graph estimation via correlation thresholding (ct)       #
 #-----------------------------------------------------------------------#
 
-##Main function
+#' Graph estimation via correlation thresholding (ct) 
+#' 
+#' See more details in \code{\link{huge}}
+#' @seealso \code{\link{huge}}, and \code{\link{huge-package}}.
 #' @export
 huge.ct = function(x, nlambda = NULL, lambda.min.ratio = NULL, lambda = NULL, verbose = TRUE)
 {
