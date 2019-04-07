@@ -33,9 +33,9 @@ List hugeglasso(Eigen::Map<Eigen::MatrixXd> S, NumericVector lambda, bool scr, b
     {
         // pre-screening by z
         vector<int> z;
-        for (size_t row_i = 0; row_i < d; row_i++) {
+        for (int row_i = 0; row_i < d; row_i++) {
             int break_flag = 0;
-            for (size_t col_i = 0; col_i < d; col_i++) {
+            for (int col_i = 0; col_i < d; col_i++) {
                 if(break_flag > 1) break;
                 if(S(row_i,col_i) > lambda[i] or S(row_i,col_i) < -lambda[i]) break_flag++;
             }
@@ -46,8 +46,8 @@ List hugeglasso(Eigen::Map<Eigen::MatrixXd> S, NumericVector lambda, bool scr, b
         int sub_df=0;
 
         //#pragma omp parallel for
-        for (size_t ii = 0; ii < q; ii++) {
-            for (size_t jj = 0; jj < q; jj++) {
+        for (int ii = 0; ii < q; ii++) {
+            for (int jj = 0; jj < q; jj++) {
                 sub_S(ii,jj) = S(z[ii],z[jj]);
                 if(zero_sol) {
                     sub_W(ii,jj) = S(z[ii],z[jj]);
@@ -91,8 +91,8 @@ List hugeglasso(Eigen::Map<Eigen::MatrixXd> S, NumericVector lambda, bool scr, b
         if(!zero_sol)
         {
             //#pragma omp parallel for
-            for (size_t ii = 0; ii < q; ii++) {
-                for (size_t jj = 0; jj < q; jj++) {
+            for (int ii = 0; ii < q; ii++) {
+                for (int jj = 0; jj < q; jj++) {
                     (*tmp_icov)(z[ii],z[jj]) = sub_T(ii,jj);
                     (*tmp_cov)(z[ii],z[jj]) = sub_W(ii,jj);
                     (*tmp_path)(z[ii],z[jj]) = sub_T(ii,jj)==0 ? 0 : 1;
@@ -106,7 +106,7 @@ List hugeglasso(Eigen::Map<Eigen::MatrixXd> S, NumericVector lambda, bool scr, b
     }
 
     List path, icov, cov;
-    for(int i = 0; i < nlambda; i++){
+    for(unsigned int i = 0; i < nlambda; i++){
         path.push_back(*(tmp_path_p[nlambda-1-i]));
         icov.push_back(*(tmp_icov_p[nlambda-1-i]));
         if(cov_output) cov.push_back(*(tmp_cov_p[nlambda-1-i]));

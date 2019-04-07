@@ -13,7 +13,7 @@ using namespace Eigen;
 double thresholdl1(double x, double thr);
 
 //[[Rcpp::export]]
-List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int nlambda, int d, NumericVector &x, IntegerVector &col_cnz, IntegerVector &row_idx)
+List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector lambda, int nlambda, int d)
 {
 
     Eigen::ArrayXd Xb, r, grad, w1, Y, XX, gr;
@@ -26,6 +26,11 @@ List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int 
     for(int i = 0; i < nlambda; i++)
       tmp_icov_p.push_back(tmp_icov);
     int n = data.rows();
+    int maxdf = 0;
+    maxdf = (n < d ? n : d)*d;
+    NumericVector x(d*maxdf*nlambda);
+    IntegerVector col_cnz(d+1);
+    IntegerVector row_idx(d*maxdf*nlambda);
     X = data;
     XX.resize(d);
     for (int j = 0; j < d; j++)
@@ -57,11 +62,10 @@ List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int 
       std::vector<double> grad(d, 0);
       std::vector<double> grad_master(d, 0);
 
-      double a = 0, g = 0, L = 0, sum_r = 0, sum_r2 = 0;
+      double a = 0, g = 0, L = 0, sum_r2 = 0;
       double tmp_change = 0, local_change = 0;
 
       r = Y - Xb;
-      sum_r = r.sum();
       sum_r2 = r.matrix().dot(r.matrix());
       L = sqrt(sum_r2 / n);
 
@@ -83,7 +87,6 @@ List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int 
 
       for(int i=0;i<nlambda;i++)
       {
-        double ilambda = lambda[i];
         w1 = w1_master;
         Xb = Xb_master;
 
@@ -114,7 +117,6 @@ List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int 
         }
         stage_lambdas[m] = lambda[i];
         r = Y - Xb;
-        sum_r = r.sum();
         sum_r2 = r.matrix().dot(r.matrix());
         L = sqrt(sum_r2 / n);
         // loop level 0: multistage convex relaxation
@@ -159,11 +161,9 @@ List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int 
                 // Xb += delta*X[idx*n]
                 Xb = Xb + tmp * X.col(j);
 
-                sum_r = 0.0;
                 sum_r2 = 0.0;
                 // r -= delta*X
                 r = r - tmp * X.col(j);
-                sum_r = r.sum();
 
                 sum_r2 = r.matrix().dot(r.matrix());
                 L = sqrt(sum_r2 / n);
@@ -195,11 +195,9 @@ List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int 
                   // Xb += delta*X[idx*n]
                   Xb = Xb + tmp * X.col(j);
 
-                  sum_r = 0.0;
                   sum_r2 = 0.0;
                   // r -= delta*X
                   r = r - tmp * X.col(j);
-                  sum_r = r.sum();
 
                   sum_r2 = r.matrix().dot(r.matrix());
                   L = sqrt(sum_r2 / n);
@@ -217,7 +215,7 @@ List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int 
               loopcnt_level_2++;
               terminate_loop_level_2 = true;
 
-              for (int k = 0; k < actset_idx.size(); k++)
+              for (unsigned int k = 0; k < actset_idx.size(); k++)
               {
                   idx = actset_idx[k];
 
@@ -241,11 +239,9 @@ List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int 
                   // Xb += delta*X[idx*n]
                   Xb = Xb + tmp * X.col(idx);
 
-                  sum_r = 0.0;
                   sum_r2 = 0.0;
                   // r -= delta*X
                   r = r - tmp * X.col(idx);
-                  sum_r = r.sum();
 
                   sum_r2 = r.matrix().dot(r.matrix());
                   L = sqrt(sum_r2 / n);
@@ -263,7 +259,7 @@ List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int 
 
             terminate_loop_level_1 = true;
               // check stopping criterion 1: fvalue change
-            for (int k = 0; k < actset_idx.size(); ++k)
+            for (unsigned int k = 0; k < actset_idx.size(); ++k)
             {
               idx = actset_idx[k];
               tmp_change = old_w1 - w1[idx];
@@ -274,7 +270,6 @@ List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int 
             }
 
             r = Y - Xb;
-            sum_r = r.sum();
             sum_r2 = r.matrix().dot(r.matrix());
             L = sqrt(sum_r2 / n);
 
@@ -324,7 +319,7 @@ List SPMBgraphsqrt(Eigen::Map<Eigen::MatrixXd> data, NumericVector &lambda, int 
             for (int j = 0; j < n; j++) Xb_master[j] = Xb[j];
           }
         }
-        for(int j=0;j<actset_idx.size();j++)
+        for(unsigned int j=0;j<actset_idx.size();j++)
         {
           int w_idx = actset_idx[j];
           x[cnz] = w1[w_idx];
