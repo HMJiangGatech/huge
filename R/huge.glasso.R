@@ -4,6 +4,7 @@
 #-----------------------------------------------------------------------#
 
 ## Main function
+#' @export
 huge.glasso = function(x, lambda = NULL, lambda.min.ratio = NULL, nlambda = NULL, scr = NULL, cov.output = FALSE, verbose = TRUE){
 
   gcinfo(FALSE)

@@ -4,6 +4,7 @@
 #-----------------------------------------------------------------------#
 
 ## Main function
+#' @export
 huge.tiger = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sym = "or", verbose = TRUE)
 {
 	gcinfo(FALSE)

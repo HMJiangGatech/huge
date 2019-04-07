@@ -4,6 +4,7 @@
 #-----------------------------------------------------------------------#
 
 ##Main function
+#' @export
 huge.ct = function(x, nlambda = NULL, lambda.min.ratio = NULL, lambda = NULL, verbose = TRUE)
 {
   gcinfo(FALSE)

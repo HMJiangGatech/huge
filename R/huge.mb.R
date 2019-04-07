@@ -4,6 +4,7 @@
 #-----------------------------------------------------------------------#
 
 ## Main function
+#' @export
 huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, scr = NULL, scr.num = NULL, idx.mat = NULL, sym = "or", verbose = TRUE)
 {
   gcinfo(FALSE)
