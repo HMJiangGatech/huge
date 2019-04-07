@@ -4,4 +4,4 @@
 * windows 10, R 3.5.2
 
 ## News
-Compared to 1.3.0, we only add "configure.ac" as the CRAN policy required.
+Compared to 1.3.1, we only modified the author list.
