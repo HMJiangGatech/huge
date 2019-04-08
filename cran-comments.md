@@ -4,4 +4,4 @@
 * windows 10, R 3.5.2
 
 ## News
-Compared to 1.3.1, we fixed the document and fixed some Rcpp memory error.
+Compared to 1.3.1, we fixed the document and fixed some Rcpp memory error. 
