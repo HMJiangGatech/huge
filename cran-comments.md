@@ -15,7 +15,7 @@ There was 2 NOTE:
   Found the following files/directories:
   'default5.eps'
 
-  I have no idea where this file comes from. Maybe it comes from the vignettes pdf. 
+  I have no idea where this file comes from, there is not such a file in huge package. Maybe it comes from the pdf of vignettes.  
   
 * checking installed package size ... NOTE
   installed size is 9.8Mb
