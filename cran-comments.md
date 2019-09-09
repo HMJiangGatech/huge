@@ -17,3 +17,9 @@ There was 1 NOTE:
     libs 8.1Mb
   
   This is a standard NOTE when the C/C++ code is included.
+  
+Oddly, I still get an additional NOTE when submitted to CRAN
+* checking for non-standard things in the check directory ... NOTE
+  Found the following files/directories:
+  'default5.eps'
+This NOTE is not appeared in rhub check or win_devel check. So I tried another time.
