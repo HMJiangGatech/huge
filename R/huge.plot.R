@@ -35,6 +35,7 @@
 huge.plot = function(G, epsflag = FALSE, graph.name = "default", cur.num = 1, location=NULL){
   gcinfo(FALSE)
   if(missing(location))  location = tempdir()
+  oldlocation = getwd()
   setwd(location)
   g = graph.adjacency(as.matrix(G!=0), mode="undirected", diag=FALSE)
   layout.grid = layout.fruchterman.reingold(g)
@@ -45,4 +46,5 @@ huge.plot = function(G, epsflag = FALSE, graph.name = "default", cur.num = 1, lo
   rm(g,location)
   gc()
   if(epsflag == TRUE) dev.off()
+  setwd(oldlocation)
 }
