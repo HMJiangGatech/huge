@@ -47,7 +47,6 @@ huge.tiger = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL,
 		rm(lambda.max,lambda.min,lambda.min.ratio)
 		gc()
 	}
-	maxdf = min(d,n);
 
 	if(verbose)
 	{

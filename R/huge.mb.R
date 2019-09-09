@@ -78,7 +78,6 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
     rm(lambda.max,lambda.min,lambda.min.ratio)
     gc()
   }
-  maxdf = min(d,n);
 
   if(scr)
   {

@@ -18,7 +18,7 @@ List SPMBgraphlasso(Eigen::Map<Eigen::MatrixXd> data, NumericVector lambda, int 
     Eigen::ArrayXXd X;
     int n = data.rows();
     int maxdf = 0;
-    maxdf = (n < d ? n : d)*d;
+    maxdf = (n < d ? n : d);
 
     NumericVector x(d*maxdf*nlambda);
     IntegerVector col_cnz(d+1);
