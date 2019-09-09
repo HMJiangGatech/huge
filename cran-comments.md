@@ -9,13 +9,7 @@ Compared to 1.3.2, we fixed a minor bug of using symmetric representation. The a
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
 
-There was 2 NOTE:
-
-* checking for non-standard things in the check directory ... NOTE
-  Found the following files/directories:
-  'default5.eps'
-
-  I have no idea where does this file come from. There isn't such file in the package.  It may come from the pdf of vignettes.  
+There was 1 NOTE:
   
 * checking installed package size ... NOTE
   installed size is 9.8Mb
