@@ -24,4 +24,3 @@ SPMBgraphsqrt <- function(data, lambda, nlambda, d) {
 hugeglasso <- function(S, lambda, scr, verbose, cov_output) {
     .Call(`_huge_hugeglasso`, S, lambda, scr, verbose, cov_output)
 }
-
