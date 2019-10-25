@@ -22,6 +22,7 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
   gcinfo(FALSE)
   n = nrow(x);
   d = ncol(x);
+  maxdf = min(d,n);
   fit = list()
   fit$cov.input = isSymmetric(x);
   if(fit$cov.input)
@@ -91,7 +92,7 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
       idx.mat = apply(-abs(S),2,order)[2:(scr.num+1),] - 1
 
     fit$idx.mat = idx.mat
-    out = .Call("_huge_SPMBgraphlasso", x, lambda, nlambda, d, scr, idx.mat, scr.num)
+    out = .Call("_huge_SPMBscr", S, lambda, nlambda, d, maxdf, idx.mat, scr.num)
   }
   if(!scr)
   {
@@ -101,7 +102,7 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
       flush.console()
     }
     fit$idx_mat = NULL
-    out = .Call("_huge_SPMBgraphlasso", x, lambda, nlambda, d, scr, as.matrix(0), 0)
+    out = .Call("_huge_SPMBgraph", S, lambda, nlambda, d, maxdf)
   }
   for(i in 1:d)
   {

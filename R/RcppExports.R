@@ -9,8 +9,12 @@ SFGen <- function(d0, d) {
     .Call(`_huge_SFGen`, d0, d)
 }
 
-SPMBgraphlasso <- function(data, lambda, nlambda, d, scr, idx_scr, nscr) {
-    .Call(`_huge_SPMBgraphlasso`, data, lambda, nlambda, d, scr, idx_scr, nscr)
+SPMBscr <- function(S, lambda, nlambda, d, maxdf, idx_scr, nscr) {
+    .Call(`_huge_SPMBscr`, S, lambda, nlambda, d, maxdf, idx_scr, nscr)
+}
+
+SPMBgraph <- function(S, lambda, nlambda, d, maxdf) {
+    .Call(`_huge_SPMBgraph`, S, lambda, nlambda, d, maxdf)
 }
 
 SPMBgraphsqrt <- function(data, lambda, nlambda, d) {
