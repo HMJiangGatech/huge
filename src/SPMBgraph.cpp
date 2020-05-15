@@ -234,59 +234,59 @@ List SPMBgraph(Eigen::Map<Eigen::MatrixXd> S, NumericVector lambda, int nlambda,
                     }
                 }
 
-            gap_ext = size_a - size_a_prev;
-
-            gap_int = 1;
-            iter_int = 0;
-            while(gap_int>thol && iter_int<MAX_ITER)
-            {
-                tmp1 = 0;
-                tmp2 = 0;
+                gap_ext = size_a - size_a_prev;
+    
+                gap_int = 1;
+                iter_int = 0;
+                while(gap_int>thol && iter_int<MAX_ITER)
+                {
+                    tmp1 = 0;
+                    tmp2 = 0;
+                    for(j=0;j<size_a;j++)
+                    {
+                        //if(w_idx!=-1)
+                        {
+                            w_idx = idx_a[j];
+                            r = S(m,w_idx) + w0[w_idx];
+    
+                            for(k=0;k<size_a;k++)
+                            {
+                                rss_idx = idx_a[k];
+                                r = r - S(w_idx,rss_idx)*w0[rss_idx];
+                            }
+    
+                            if(r > ilambda)
+                            {
+                                w1[w_idx] = r - ilambda;
+                                tmp2 += fabs(w1[w_idx]);
+                            }
+                            else if(r <-ilambda){
+                                w1[w_idx] = r + ilambda;
+                                tmp2 += fabs(w1[w_idx]);
+                            }
+    
+                            else w1[w_idx] = 0;
+    
+                            tmp1 += fabs(w1[w_idx] - w0[w_idx]);
+                            w0[w_idx] = w1[w_idx];
+                        }
+                    }
+                    gap_int = tmp1/tmp2;
+                    iter_int++;
+                }
+                junk_a = 0;
                 for(j=0;j<size_a;j++)
                 {
-                    //if(w_idx!=-1)
-                    {
-                        w_idx = idx_a[j];
-                        r = S(m,w_idx) + w0[w_idx];
-
-                        for(k=0;k<size_a;k++)
-                        {
-                            rss_idx = idx_a[k];
-                            r = r - S(w_idx,rss_idx)*w0[rss_idx];
-                        }
-
-                        if(r > ilambda)
-                        {
-                            w1[w_idx] = r - ilambda;
-                            tmp2 += fabs(w1[w_idx]);
-                        }
-                        else if(r <-ilambda){
-                            w1[w_idx] = r + ilambda;
-                            tmp2 += fabs(w1[w_idx]);
-                        }
-
-                        else w1[w_idx] = 0;
-
-                        tmp1 += fabs(w1[w_idx] - w0[w_idx]);
-                        w0[w_idx] = w1[w_idx];
+                    w_idx = idx_a[j];
+                    if(w1[w_idx]==0){
+                        junk_a++;
+                        idx_i[w_idx] = 1;
+                        //idx_a[j] = -1;
                     }
+                    else idx_a[j-junk_a] = w_idx;
                 }
-                gap_int = tmp1/tmp2;
-                iter_int++;
-            }
-            junk_a = 0;
-            for(j=0;j<size_a;j++)
-            {
-                w_idx = idx_a[j];
-                if(w1[w_idx]==0){
-                    junk_a++;
-                    idx_i[w_idx] = 1;
-                    //idx_a[j] = -1;
-                }
-                else idx_a[j-junk_a] = w_idx;
-            }
-            size_a = size_a - junk_a;
-            iter_ext++;
+                size_a = size_a - junk_a;
+                iter_ext++;
             }
             for(j=0;j<size_a;j++)
             {
