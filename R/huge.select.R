@@ -99,8 +99,8 @@ huge.select = function(est, criterion = NULL, ebic.gamma = 0.5, stars.thresh = 0
       if(verbose)
       {
         cat("Conducting rotation information criterion (ric) selection....")
-            flush.console()
-          }
+        flush.console()
+      }
 
       if(n>rep.num){
         nr = rep.num
