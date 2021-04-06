@@ -79,7 +79,7 @@ huge.select = function(est, criterion = NULL, ebic.gamma = 0.5, stars.thresh = 0
   if(est$cov.input){
     cat("Model selection is not available when using the covariance matrix as input.")
     class(est) = "select"
-      return(est)
+    return(est)
   }
   if(!est$cov.input)
   {
@@ -128,26 +128,25 @@ huge.select = function(est, criterion = NULL, ebic.gamma = 0.5, stars.thresh = 0
       if(est$opt.lambda>max(cor(est$data)))
         est$refit = Matrix(0,d,d)
       else{
-
-      if(est$method == "mb")
-        est$refit = huge.mb(est$data, lambda = est$opt.lambda, sym = est$sym, idx.mat = est$idx.mat, verbose = FALSE)$path[[1]]
-      if(est$method == "glasso")
-      {
-        if(!is.null(est$cov))
+        if(est$method == "mb")
+          est$refit = huge.mb(est$data, lambda = est$opt.lambda, sym = est$sym, idx.mat = est$idx.mat, verbose = FALSE)$path[[1]]
+        if(est$method == "glasso")
         {
-          tmp = huge.glasso(est$data, lambda = est$opt.lambda, scr = est$scr, cov.output = TRUE, verbose = FALSE)
-          est$opt.cov = tmp$cov[[1]]
-        }
-        if(is.null(est$cov))
-          tmp = huge.glasso(est$data, lambda = est$opt.lambda, verbose = FALSE)
+          if(!is.null(est$cov))
+          {
+            tmp = huge.glasso(est$data, lambda = est$opt.lambda, scr = est$scr, cov.output = TRUE, verbose = FALSE)
+            est$opt.cov = tmp$cov[[1]]
+          }
+          if(is.null(est$cov))
+            tmp = huge.glasso(est$data, lambda = est$opt.lambda, verbose = FALSE)
 
-        est$refit = tmp$path[[1]]
-        est$opt.icov = tmp$icov[[1]]
-        rm(tmp)
-        gc()
-      }
-      if(est$method == "ct")
-        est$refit = huge.ct(est$data, lambda = est$opt.lambda, verbose = FALSE)$path[[1]]
+          est$refit = tmp$path[[1]]
+          est$opt.icov = tmp$icov[[1]]
+          rm(tmp)
+          gc()
+        }
+        if(est$method == "ct")
+          est$refit = huge.ct(est$data, lambda = est$opt.lambda, verbose = FALSE)$path[[1]]
       }
       est$opt.sparsity=sum(est$refit)/d/(d-1)
 
@@ -162,7 +161,7 @@ huge.select = function(est, criterion = NULL, ebic.gamma = 0.5, stars.thresh = 0
       if(verbose)
       {
         cat("Conducting extended Bayesian information criterion (ebic) selection....")
-            flush.console()
+        flush.console()
       }
       est$ebic.score = -n*est$loglik + log(n)*est$df + 4*ebic.gamma*log(d)*est$df
       est$opt.index = which.min(est$ebic.score)
@@ -170,9 +169,10 @@ huge.select = function(est, criterion = NULL, ebic.gamma = 0.5, stars.thresh = 0
       est$opt.icov = est$icov[[est$opt.index]]
       if(est$cov.output)
         est$opt.cov = est$cov[[est$opt.index]]
-        est$opt.lambda = est$lambda[est$opt.index]
-        est$opt.sparsity = est$sparsity[est$opt.index]
-        if(verbose){
+      est$opt.lambda = est$lambda[est$opt.index]
+      est$opt.sparsity = est$sparsity[est$opt.index]
+      if(verbose)
+      {
         cat("done\n")
         flush.console()
       }
@@ -188,58 +188,59 @@ huge.select = function(est, criterion = NULL, ebic.gamma = 0.5, stars.thresh = 0
       est$merge = list()
       for(i in 1:nlambda) est$merge[[i]] = Matrix(0,d,d)
 
-        for(i in 1:rep.num)
+      for(i in 1:rep.num)
+      {
+        if(verbose)
         {
-          if(verbose)
-          {
           mes <- paste(c("Conducting Subsampling....in progress:", floor(100*i/rep.num), "%"), collapse="")
-             cat(mes, "\r")
-                flush.console()
-        }
-          ind.sample = sample(c(1:n), floor(n*stars.subsample.ratio), replace=FALSE)
-
-          if(est$method == "mb")
-            tmp = huge.mb(est$data[ind.sample,],lambda = est$lambda, scr = est$scr, idx.mat = est$idx.mat, sym = est$sym, verbose = FALSE)$path
-             if(est$method == "ct")
-            tmp = huge.ct(est$data[ind.sample,], lambda = est$lambda,verbose = FALSE)$path
-          if(est$method == "glasso")
-            tmp = huge.glasso(est$data[ind.sample,], lambda = est$lambda, scr = est$scr, verbose = FALSE)$path
-
-          for(i in 1:nlambda)
-            est$merge[[i]] = est$merge[[i]] + tmp[[i]]
-
-          rm(ind.sample,tmp)
-           gc()
-      }
-
-      if(verbose){
-        mes = "Conducting Subsampling....done.                 "
           cat(mes, "\r")
-          cat("\n")
           flush.console()
         }
+        ind.sample = sample(c(1:n), floor(n*stars.subsample.ratio), replace=FALSE)
 
-        est$variability = rep(0,nlambda)
+        if(est$method == "mb")
+          tmp = huge.mb(est$data[ind.sample,],lambda = est$lambda, scr = est$scr, idx.mat = est$idx.mat, sym = est$sym, verbose = FALSE)$path
+           if(est$method == "ct")
+          tmp = huge.ct(est$data[ind.sample,], lambda = est$lambda,verbose = FALSE)$path
+        if(est$method == "glasso")
+          tmp = huge.glasso(est$data[ind.sample,], lambda = est$lambda, scr = est$scr, verbose = FALSE)$path
+
+        for(i in 1:nlambda)
+          est$merge[[i]] = est$merge[[i]] + tmp[[i]]
+
+        rm(ind.sample,tmp)
+        gc()
+      }
+
+      if(verbose)
+      {
+        mes = "Conducting Subsampling....done.                 "
+        cat(mes, "\r")
+        cat("\n")
+        flush.console()
+      }
+
+      est$variability = rep(0,nlambda)
       for(i in 1:nlambda){
         est$merge[[i]] = est$merge[[i]]/rep.num
-          est$variability[i] = 4*sum(est$merge[[i]]*(1-est$merge[[i]]))/(d*(d-1))
-        }
+        est$variability[i] = 4*sum(est$merge[[i]]*(1-est$merge[[i]]))/(d*(d-1))
+      }
 
-        est$opt.index = max(which.max(est$variability >= stars.thresh)[1]-1,1)
-         est$refit = est$path[[est$opt.index]]
-        est$opt.lambda = est$lambda[est$opt.index]
-        est$opt.sparsity = est$sparsity[est$opt.index]
-        if(est$method == "glasso")
-        {
-          est$opt.icov = est$icov[[est$opt.index]]
+      est$opt.index = max(which.max(est$variability >= stars.thresh)[1]-1,1)
+      est$refit = est$path[[est$opt.index]]
+      est$opt.lambda = est$lambda[est$opt.index]
+      est$opt.sparsity = est$sparsity[est$opt.index]
+      if(est$method == "glasso")
+      {
+        est$opt.icov = est$icov[[est$opt.index]]
         if(!is.null(est$cov))
           est$opt.cov = est$cov[[est$opt.index]]
-        }
+      }
     }
-      est$criterion = criterion
-      class(est) = "select"
-      return(est)
-    }
+    est$criterion = criterion
+    class(est) = "select"
+    return(est)
+  }
 }
 
 #-----------------------------------------------------------------------#
