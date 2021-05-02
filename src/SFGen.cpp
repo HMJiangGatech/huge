@@ -9,7 +9,7 @@ List SFGen(int d0, int d){
     IntegerMatrix G(d,d);
     int i,j;
     double x;
-    int *size_a = (int*) Calloc(d, int);
+    int *size_a = (int*) R_Calloc(d, int);
     int tmp;
     int total;
 
@@ -45,7 +45,7 @@ List SFGen(int d0, int d){
         size_a[j]++;
         size_a[i]++;
     }
-    Free(size_a);
+    R_Free(size_a);
 
     return List::create(
       _["G"] = G
