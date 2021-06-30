@@ -4,8 +4,13 @@
 \alias{huge.plot}
 \title{Graph visualization}
 \usage{
-huge.plot(G, epsflag = FALSE, graph.name = "default", cur.num = 1,
-  location = NULL)
+huge.plot(
+  G,
+  epsflag = FALSE,
+  graph.name = "default",
+  cur.num = 1,
+  location = NULL
+)
 }
 \arguments{
 \item{G}{The adjacency matrix corresponding to the graph.}
@@ -37,10 +42,8 @@ huge.plot(L$theta)
 L = huge.generator(graph = "cluster")
 huge.plot(L$theta)
 
-#show working directory
-getwd()
-#plot 5 graphs and save the plots as eps files in the working directory
-huge.plot(L$theta, epsflag = TRUE, cur.num = 5)
+## plot 5 graphs and save the plots as eps files in the tempdir()
+huge.plot(L$theta, epsflag = TRUE, cur.num = 5, location = tempdir())
 }
 \seealso{
 \code{\link{huge}} and \code{\link{huge-package}}.

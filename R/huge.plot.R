@@ -16,7 +16,6 @@
 #' @param location Target directory. The default value is the current working directory.
 #' @seealso \code{\link{huge}} and \code{\link{huge-package}}.
 #' @examples
-#' The following code are commented out for passing the CRAN check
 #' ## visualize the hub graph
 #' L = huge.generator(graph = "hub")
 #' huge.plot(L$theta)
@@ -29,7 +28,7 @@
 #' L = huge.generator(graph = "cluster")
 #' huge.plot(L$theta)
 #'
-#' #plot 5 graphs and save the plots as eps files in the tempdir()
+#' ## plot 5 graphs and save the plots as eps files in the tempdir()
 #' huge.plot(L$theta, epsflag = TRUE, cur.num = 5, location = tempdir())
 #' @export
 huge.plot = function(G, epsflag = FALSE, graph.name = "default", cur.num = 1, location=NULL){

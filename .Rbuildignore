@@ -8,3 +8,6 @@ README.md
 \.o$
 \.so$
 \.dll$
+^doc$
+^Meta$
+^revdep$

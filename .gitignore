@@ -60,3 +60,5 @@ rsconnect/
 *.out
 *.app
 inst/doc
+/doc/
+/Meta/

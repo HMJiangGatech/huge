@@ -4,9 +4,18 @@
 \alias{huge}
 \title{High-dimensional undirected graph estimation}
 \usage{
-huge(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL,
-  method = "mb", scr = NULL, scr.num = NULL, cov.output = FALSE,
-  sym = "or", verbose = TRUE)
+huge(
+  x,
+  lambda = NULL,
+  nlambda = NULL,
+  lambda.min.ratio = NULL,
+  method = "mb",
+  scr = NULL,
+  scr.num = NULL,
+  cov.output = FALSE,
+  sym = "or",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x}{There are 2 options: (1) \code{x} is an \code{n} by \code{d} data matrix (2) a \code{d} by \code{d} sample covariance matrix. The program automatically identifies the input matrix by checking the symmetry. (\code{n} is the sample size and \code{d} is the dimension).}

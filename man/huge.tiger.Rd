@@ -4,8 +4,14 @@
 \alias{huge.tiger}
 \title{Tuning-insensitive graph estimation}
 \usage{
-huge.tiger(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL,
-  sym = "or", verbose = TRUE)
+huge.tiger(
+  x,
+  lambda = NULL,
+  nlambda = NULL,
+  lambda.min.ratio = NULL,
+  sym = "or",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x}{There are 2 options: (1) \code{x} is an \code{n} by \code{d} data matrix (2) a \code{d} by \code{d} sample covariance matrix. The program automatically identifies the input matrix by checking the symmetry. (\code{n} is the sample size and \code{d} is the dimension).}

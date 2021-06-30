@@ -4,9 +4,17 @@
 \alias{huge.mb}
 \title{Meinshausen & Buhlmann graph estimation}
 \usage{
-huge.mb(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL,
-  scr = NULL, scr.num = NULL, idx.mat = NULL, sym = "or",
-  verbose = TRUE)
+huge.mb(
+  x,
+  lambda = NULL,
+  nlambda = NULL,
+  lambda.min.ratio = NULL,
+  scr = NULL,
+  scr.num = NULL,
+  idx.mat = NULL,
+  sym = "or",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x}{There are 2 options: (1) \code{x} is an \code{n} by \code{d} data matrix (2) a \code{d} by \code{d} sample covariance matrix. The program automatically identifies the input matrix by checking the symmetry. (\code{n} is the sample size and \code{d} is the dimension).}

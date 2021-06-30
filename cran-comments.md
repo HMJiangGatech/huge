@@ -1,19 +1,28 @@
 ## Test environments
-* Mac OS X, R 3.6.1
-* ubuntu 16.04, R 3.6.1
-* windows 10, R 3.6.1
+* Mac OS X, R 4.1.0
+* ubuntu 18.04, R 4.1.0
+* windows 10, R 4.1.0
 
 ## News
-Compared to 1.3.3, we fixed the implementation of the mb algorithm, which was essentially reversed back to version 1.2.7.
+Compared to 1.3.4, we update the Rcpp dependency.
 
 ## R CMD check results
-There were no ERRORs or WARNINGs.
+There were no ERRORs or WARNINGs or NOTEs.
 
-There was 1 NOTE:
+## revdepcheck results
 
-* checking installed package size ... NOTE
-  installed size is 9.8Mb
-  sub-directories of 1Mb or more:
-    libs 8.1Mb
+We checked 22 reverse dependencies (20 from CRAN + 2 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
 
-  This is a standard NOTE when the C/C++ code is included.
+ * We saw 0 new problems
+ * We failed to check 6 packages
+
+Issues with CRAN packages are summarised below.
+
+### Failed to check
+
+* BDgraph      (NA)
+* netgwas      (NA)
+* nutriNetwork (NA)
+* pcalg        (NA)
+* qgraph       (NA)
+* stm          (NA)

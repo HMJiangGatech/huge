@@ -2,7 +2,7 @@
 
 AC_PREREQ(2.62)
 
-AC_INIT([huge],1.3.4)
+AC_INIT([huge],1.3.5)
 
 OPENMP_CXXFLAGS=""
 

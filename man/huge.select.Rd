@@ -4,9 +4,15 @@
 \alias{huge.select}
 \title{Model selection for high-dimensional undirected graph estimation}
 \usage{
-huge.select(est, criterion = NULL, ebic.gamma = 0.5,
-  stars.thresh = 0.1, stars.subsample.ratio = NULL, rep.num = 20,
-  verbose = TRUE)
+huge.select(
+  est,
+  criterion = NULL,
+  ebic.gamma = 0.5,
+  stars.thresh = 0.1,
+  stars.subsample.ratio = NULL,
+  rep.num = 20,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{est}{An object with S3 class \code{"huge"}.}

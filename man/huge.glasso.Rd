@@ -4,8 +4,15 @@
 \alias{huge.glasso}
 \title{The graphical lasso (glasso) using sparse matrix output}
 \usage{
-huge.glasso(x, lambda = NULL, lambda.min.ratio = NULL,
-  nlambda = NULL, scr = NULL, cov.output = FALSE, verbose = TRUE)
+huge.glasso(
+  x,
+  lambda = NULL,
+  lambda.min.ratio = NULL,
+  nlambda = NULL,
+  scr = NULL,
+  cov.output = FALSE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x}{There are 2 options: (1) \code{x} is an \code{n} by \code{d} data matrix (2) a \code{d} by \code{d} sample covariance matrix. The program automatically identifies the input matrix by checking the symmetry. (\code{n} is the sample size and \code{d} is the dimension).}

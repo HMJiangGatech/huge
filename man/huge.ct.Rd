@@ -4,8 +4,13 @@
 \alias{huge.ct}
 \title{Graph estimation via correlation thresholding (ct)}
 \usage{
-huge.ct(x, nlambda = NULL, lambda.min.ratio = NULL, lambda = NULL,
-  verbose = TRUE)
+huge.ct(
+  x,
+  nlambda = NULL,
+  lambda.min.ratio = NULL,
+  lambda = NULL,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x}{There are 2 options: (1) \code{x} is an \code{n} by \code{d} data matrix (2) a \code{d} by \code{d} sample covariance matrix. The program automatically identifies the input matrix by checking the symmetry. (\code{n} is the sample size and \code{d} is the dimension).}

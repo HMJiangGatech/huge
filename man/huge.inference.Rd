@@ -4,8 +4,7 @@
 \alias{huge.inference}
 \title{Graph inference}
 \usage{
-huge.inference(data, T, adj, alpha = 0.05, type = "Gaussian",
-  method = "score")
+huge.inference(data, T, adj, alpha = 0.05, type = "Gaussian", method = "score")
 }
 \arguments{
 \item{data}{The input \code{n} by \code{d} data matrix(\code{n} is the sample size and \code{d} is the dimension).}
