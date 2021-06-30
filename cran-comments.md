@@ -26,3 +26,8 @@ Issues with CRAN packages are summarised below.
 * pcalg        (NA)
 * qgraph       (NA)
 * stm          (NA)
+
+## Resubmission
+This is a resubmission. In this version I have:
+
+* fix pdf size warning
