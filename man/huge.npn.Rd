@@ -4,7 +4,13 @@
 \alias{huge.npn}
 \title{Nonparanormal(npn) transformation}
 \usage{
-huge.npn(x, npn.func = "shrinkage", npn.thresh = NULL, verbose = TRUE)
+huge.npn(
+  x,
+  npn.func = "shrinkage",
+  npn.thresh = NULL,
+  verbose = TRUE,
+  na.last = "keep"
+)
 }
 \arguments{
 \item{x}{The \code{n} by \code{d} data matrix representing \code{n} observations in \code{d} dimensions}
@@ -14,6 +20,8 @@ huge.npn(x, npn.func = "shrinkage", npn.thresh = NULL, verbose = TRUE)
 \item{npn.thresh}{The truncation threshold used in nonparanormal transformation, ONLY applicable when \code{npn.func = "truncation"}. The default value is \code{1/(4*(n^0.25)*} \code{sqrt(pi*log(n)))}.}
 
 \item{verbose}{If \code{verbose = FALSE}, tracing information printing is disabled. The default value is \code{TRUE}.}
+
+\item{na.last}{for controlling the treatment of NAs. If TRUE, missing values in the data are put last; if FALSE, they are put first; if NA, they are removed; if "keep" they are kept with rank NA. See also \code{\link{rank}}.}
 }
 \value{
 \item{data}{
