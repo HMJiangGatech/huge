@@ -92,7 +92,7 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
       idx.mat = apply(-abs(S),2,order)[2:(scr.num+1),] - 1
 
     fit$idx.mat = idx.mat
-    out = .Call("_huge_SPMBscr", S, lambda, nlambda, d, maxdf, idx.mat, scr.num)
+    out = .Call("_huge_SPMBscr", S, lambda, nlambda, d, maxdf, idx.mat, scr.num, PACKAGE="huge")
   }
   if(!scr)
   {
@@ -102,7 +102,7 @@ huge.mb = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL, sc
       flush.console()
     }
     fit$idx_mat = NULL
-    out = .Call("_huge_SPMBgraph", S, lambda, nlambda, d, maxdf)
+    out = .Call("_huge_SPMBgraph", S, lambda, nlambda, d, maxdf, PACKAGE= "huge")
   }
   for(i in 1:d)
   {

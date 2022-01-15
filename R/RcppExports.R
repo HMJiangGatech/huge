@@ -2,26 +2,25 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 RIC <- function(X, d, n, r, t) {
-    .Call(`_huge_RIC`, X, d, n, r, t)
+    .Call(`_huge_RIC`, X, d, n, r, t, PACKAGE= "huge")
 }
 
 SFGen <- function(d0, d) {
-    .Call(`_huge_SFGen`, d0, d)
+    .Call(`_huge_SFGen`, d0, d, PACKAGE= "huge")
 }
 
 SPMBscr <- function(S, lambda, nlambda, d, maxdf, idx_scr, nscr) {
-    .Call(`_huge_SPMBscr`, S, lambda, nlambda, d, maxdf, idx_scr, nscr)
+    .Call(`_huge_SPMBscr`, S, lambda, nlambda, d, maxdf, idx_scr, nscr, PACKAGE= "huge")
 }
 
 SPMBgraph <- function(S, lambda, nlambda, d, maxdf) {
-    .Call(`_huge_SPMBgraph`, S, lambda, nlambda, d, maxdf)
+    .Call(`_huge_SPMBgraph`, S, lambda, nlambda, d, maxdf, PACKAGE= "huge")
 }
 
 SPMBgraphsqrt <- function(data, lambda, nlambda, d) {
-    .Call(`_huge_SPMBgraphsqrt`, data, lambda, nlambda, d)
+    .Call(`_huge_SPMBgraphsqrt`, data, lambda, nlambda, d, PACKAGE= "huge")
 }
 
 hugeglasso <- function(S, lambda, scr, verbose, cov_output) {
-    .Call(`_huge_hugeglasso`, S, lambda, scr, verbose, cov_output)
+    .Call(`_huge_hugeglasso`, S, lambda, scr, verbose, cov_output, PACKAGE= "huge")
 }
-
