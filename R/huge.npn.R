@@ -13,6 +13,7 @@
 #' @param npn.func The transformation function used in the npn transformation. If \code{npn.func = "truncation"}, the truncated ECDF is applied. If \code{npn.func = "shrinkage"}, the shrunken ECDF is applied. The default is \code{"shrinkage"}. If \code{npn.func = "skeptic"}, the nonparanormal skeptic is applied.
 #' @param npn.thresh The truncation threshold used in nonparanormal transformation, ONLY applicable when \code{npn.func = "truncation"}. The default value is \code{1/(4*(n^0.25)*} \code{sqrt(pi*log(n)))}.
 #' @param verbose If \code{verbose = FALSE}, tracing information printing is disabled. The default value is \code{TRUE}.
+#' @param na.last for controlling the treatment of NAs. If TRUE, missing values in the data are put last; if FALSE, they are put first; if NA, they are removed; if "keep" they are kept with rank NA. See also \code{\link{rank}}.
 #' @return
 #' \item{data}{
 #' A \code{d} by \code{d} nonparanormal correlation matrix if \code{npn.func = "skeptic"}, and A \code{n} by \code{d} data matrix representing \code{n} observations in \code{d} transformed dimensions other wise.
@@ -32,19 +33,19 @@
 #' # transform the non-Gaussian data using the truncated ECDF
 #' Q = huge.npn(L$data, npn.func = "skeptic")
 #' @export
-huge.npn = function(x, npn.func = "shrinkage", npn.thresh = NULL, verbose = TRUE){
+huge.npn = function(x, npn.func = "shrinkage", npn.thresh = NULL, verbose = TRUE, na.last = "keep"){
   gcinfo(FALSE)
   n = nrow(x)
-    d = ncol(x)
-    x.col = colnames(x)
-    x.row = rownames(x)
+  d = ncol(x)
+  x.col = colnames(x)
+  x.row = rownames(x)
 
     # Shrinkaage transformation
   if(npn.func == "shrinkage"){
     if(verbose) cat("Conducting the nonparanormal (npn) transformation via shrunkun ECDF....")
 
-    x = qnorm(apply(x,2,rank)/(n+1))
-    x = x/sd(x[,1])
+    x = qnorm(apply(x,2,rank,na.last=na.last)/(n+1))
+    x = x/sd(x[,1], na.rm = TRUE)
 
     if(verbose) cat("done.\n")
     rm(n,d,verbose)
@@ -58,8 +59,8 @@ huge.npn = function(x, npn.func = "shrinkage", npn.thresh = NULL, verbose = TRUE
     if(verbose) cat("Conducting nonparanormal (npn) transformation via truncated ECDF....")
     if(is.null(npn.thresh)) npn.thresh = 1/(4*(n^0.25)*sqrt(pi*log(n)))
 
-    x = qnorm(pmin(pmax(apply(x,2,rank)/n, npn.thresh), 1-npn.thresh))
-      x = x/sd(x[,1])
+    x = qnorm(pmin(pmax(apply(x,2,rank,na.last=na.last)/n, npn.thresh), 1-npn.thresh))
+      x = x/sd(x[,1], na.rm = TRUE)
 
       if(verbose) cat("done.\n")
       rm(n,d,npn.thresh,verbose)
