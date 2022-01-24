@@ -54,7 +54,7 @@ huge.tiger = function(x, lambda = NULL, nlambda = NULL, lambda.min.ratio = NULL,
 	  flush.console()
 	}
 	fit$idx_mat = NULL
-	out = .Call("_huge_SPMBgraphsqrt", x, lambda, nlambda, d)
+	out = .Call("_huge_SPMBgraphsqrt", x, lambda, nlambda, d, PACKAGE= "huge")
 	for(i in 1:d)
 	{
 	  if(out$col_cnz[i+1]>out$col_cnz[i])

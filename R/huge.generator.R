@@ -146,7 +146,7 @@ huge.generator = function(n = 200, d = 50, graph = "random", v = NULL, u = NULL,
   if(graph == "scale-free"){
   if(is.null(u)) u = 0.1
   if(is.null(v)) v = 0.3
-  out = .Call("_huge_SFGen", 2, d)
+  out = .Call("_huge_SFGen", 2, d, PACKAGE= "huge")
   theta = matrix(as.numeric(out$G),d,d)
   }
   diag(theta) = 0

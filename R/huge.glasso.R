@@ -3,8 +3,8 @@
 # glasso(): The graphical lasso (glasso) using sparse matrix output     #
 #-----------------------------------------------------------------------#
 
-#' The graphical lasso (glasso) using sparse matrix output 
-#' 
+#' The graphical lasso (glasso) using sparse matrix output
+#'
 #' See more details in \code{\link{huge}}
 #' @param x There are 2 options: (1) \code{x} is an \code{n} by \code{d} data matrix (2) a \code{d} by \code{d} sample covariance matrix. The program automatically identifies the input matrix by checking the symmetry. (\code{n} is the sample size and \code{d} is the dimension).
 #' @param lambda A sequence of decreasing positive numbers to control the regularization when \code{method = "mb"}, \code{"glasso"} or \code{"tiger"}, or the thresholding in \code{method = "ct"}. Typical usage is to leave the input \code{lambda = NULL} and have the program compute its own \code{lambda} sequence based on \code{nlambda} and \code{lambda.min.ratio}. Users can also specify a sequence to override this. When \code{method = "mb"}, \code{"glasso"} or \code{"tiger"}, use with care - it is better to supply a decreasing sequence values than a single (small) value.
@@ -46,7 +46,7 @@ huge.glasso = function(x, lambda = NULL, lambda.min.ratio = NULL, nlambda = NULL
     lambda = exp(seq(log(lambda.max), log(lambda.min), length = nlambda))
   }
 
-  fit = .Call("_huge_hugeglasso",S,lambda,scr,verbose,cov.output)
+  fit = .Call("_huge_hugeglasso",S,lambda,scr,verbose,cov.output,PACKAGE="huge")
 
   fit$scr = scr
   fit$lambda = lambda
