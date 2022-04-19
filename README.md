@@ -1,6 +1,6 @@
 <h1 align="center">Huge</h1>
 
-[![](https://cranlogs.r-pkg.org/badges/huge)](https://cran.r-project.org/package=huge)
+[![](https://cranlogs.r-pkg.org/badges/huge)](https://cran.r-project.org/package=huge)[![](https://cranlogs.r-pkg.org/badges/grand-total/huge)](https://cran.r-project.org/package=huge)
 
 <h4 align="center">R Package for High-Dimensional Undirected Graph Estimation and Inference</h4>
 
