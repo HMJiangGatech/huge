@@ -43,4 +43,6 @@ License: GPL-2
 Repository: CRAN
 NeedsCompilation: yes
 RoxygenNote: 7.1.2
+URL: https://github.com/HMJiangGatech/huge
+BugReports: https://github.com/HMJiangGatech/huge/issues
 Encoding: UTF-8
